@@ -27,7 +27,7 @@ try {
     $i = 0;
     while ($row = $q->fetch()) {
         $tasksList[$i]=array(
-            'id'=>"$row[category_id]",
+            'id'=>"$row[id]",
             'name'=>"$row[name]",
             'note'=>"$row[note]",
             'userId'=>"$row[user_id]",

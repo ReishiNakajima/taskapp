@@ -18,7 +18,7 @@ try {
         print $e->getMessage();
         die();
     }
-    $stmt = $db->prepare('UPDATE `task` SET `name` = (?), `deadline` = (?), `note` = (?) WHERE (`category_id` = (?))');
+    $stmt = $db->prepare('UPDATE `task` SET `name` = (?), `deadline` = (?), `note` = (?) WHERE (`id` = (?))');
     $task = new Task();
     $task->setName($_POST['name']);
     $task->setNote($_POST['note']);

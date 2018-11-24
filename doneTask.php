@@ -18,7 +18,7 @@ try {
         print $e->getMessage();
         die();
     }
-    $stmt = $db->prepare('UPDATE task SET done_flag=(?) where category_id=(?)');
+    $stmt = $db->prepare('UPDATE task SET done_flag=(?) where id=(?)');
     $task = new Task();
     $stmt->execute(array($_POST['doneFlag'],$_POST['id']));
     

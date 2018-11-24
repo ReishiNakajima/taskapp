@@ -90,7 +90,7 @@ $i = 0;
 while ($row = $q->fetch()) {
 
     $undoneTasks[$i] = new Task();
-    $undoneTasks[$i]->setId("$row[category_id]");
+    $undoneTasks[$i]->setId("$row[id]");
     $undoneTasks[$i]->setName("$row[name]");
     $undoneTasks[$i]->setNote("$row[note]");
     $undoneTasks[$i]->setUserId("$row[user_id]");
