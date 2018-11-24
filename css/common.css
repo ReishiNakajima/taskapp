@@ -1,0 +1,38 @@
+.container {
+  max-width: 90%;
+}
+
+.stress {
+  font-weight: bold;
+  font-size: large;
+}
+
+footer {
+  text-align: center;
+  color: gray;
+  font-size: small;
+}
+
+@media screen and (min-width:800px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width:420px) {
+  .container {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width:375px) {
+  .container {
+    max-width: 355px;
+  }
+}
+
+@media screen and (max-width:320px) {
+  .container {
+    max-width: 300px;
+  }
+}

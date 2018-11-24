@@ -1,0 +1,24 @@
+{
+    "deploy.reloaded": {
+        "targets": [
+          {
+            "type": "local",
+            "name": "deploy to my website",
+            "description": "deploy to xampp htdocs",
+            "dir": "C:\\Users\\R_NAKAJIMA\\Desktop\\開発\\php"
+          }
+        ],
+        "packages": [
+          {
+            "name": "sample package",
+            "description": "sample",
+            "files": [
+              "**/*.php",
+              "**/*.html"
+            ],
+            "exclude": [
+              ".vscode/**"
+            ]
+          }
+        ]}
+}

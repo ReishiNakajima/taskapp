@@ -1,0 +1,142 @@
+body {
+  padding-top: 5rem;
+  overflow-y: scroll;
+}
+main {
+  text-align: center;
+}
+
+#sortable{
+  padding: 0;
+}
+#sortable li{
+  list-style: none;
+}
+
+.sortArea{
+  cursor: move;
+}
+
+.progress-bar-animated{
+  animation-direction: reverse;
+}
+
+.card-header{
+  display: table;
+  height: 67px;
+}
+
+.card-header span{
+  display: table-cell;
+  height: 100%;
+}
+
+/* 並び替えボタン */
+.card .card-header span.head-1{
+  width:5%;
+  padding-top: 6px;
+}
+/* edit or save button */
+.card .card-header span.head-2{
+  width:10%;
+  padding-top: 6px;
+}
+
+.card .card-header span.head-3{
+  width:45%; 
+}
+
+.card .card-header span.head-4{
+  width:30%; 
+}
+
+.card .card-header span.head-5{
+  width:10%; 
+}
+
+.editable .card-header span.head-3{
+  width:40%; 
+}
+
+.editable .card-header span.head-4{
+  width:30%; 
+}
+
+.editable .card-header span.head-5{
+  width:15%; 
+}
+
+.editable .card-header span input{
+  text-align: center;
+  width: 90%;
+  padding: 0;
+}
+
+.editable .card-header span.head-3 input{
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: black;
+}
+
+.editable .card-header span.head-4 input, .editable .card-header span.head-5 input{
+  font-weight: 700;
+  color: #6c757d;
+}
+.datepicker.form-control, .timepicker.form-control{
+  background-color: white;
+}
+
+#trashBox{
+  position:fixed;
+  bottom:3%;
+  right:3%;
+  z-index:999;
+ }
+
+ #trashBox i{
+  font-size: 100px;
+ }
+
+ #trashBox button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+ }
+
+ .deletedCard {
+  animation: fadeout 1s ease 0s 1 normal;
+  }
+  @keyframes fadeout {
+    0% {
+      transform: translateX(0%)
+    }
+    100% {
+      transform: translateX(100%)
+    }
+  }
+  
+  @-webkit-keyframes fadeout {
+    0% {
+      transform: translateX(0%)
+    }
+    100% {
+      transform: translateX(100%)
+    }
+  }
+
+  .purupuru {
+    animation: purupuru 0.8s linear 1s 1;
+  }
+   
+  @keyframes purupuru {
+    0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+    20%  { transform: scale(1.0, 1.06) translate(-5%, -4%) skew(6deg, 0deg); }
+    50%  { transform: scale(1.0, 0.94) translate(5%, 4%) skew(-6deg, 0deg); }
+    65%  { transform: scale(1.0, 1.03) translate(2%, -2%) skew(-3deg, 0deg); }
+    80%  { transform: scale(1.0, 0.97) translate(-2%, 2%) skew(3deg, 0deg); }
+    100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  }
+  
