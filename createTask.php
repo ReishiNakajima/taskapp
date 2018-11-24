@@ -9,7 +9,7 @@ include 'entity/task.php';
 if (isset($_POST['name'])) {
     // DBに接続する
     try {
-        $db = new PDO('mysql:host=localhost;dbname=mydb;charset=utf8', 'task', 'pass');
+        $db = new PDO('mysql://b7d179cccfc560:184764d8@us-cdbr-iron-east-01.cleardb.net/heroku_ddcb2b282511a28?reconnect=true;dbname=mydb;charset=utf8', 'task', 'pass');
     } catch (PODException $e) {
         print $e->getMessage();
         die();
