@@ -8,12 +8,12 @@ include 'entity/task.php';
 
 if (isset($_POST['name'])) {
 // DBに接続する
-$db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-$db['dbname'] = ltrim($db['path'], '/');
-$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+    $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+    $db['dbname'] = ltrim($db['path'], '/');
+    $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
 
-try {
-    $db = new PDO($dsn, $db['user'], $db['pass']);
+    try {
+        $db = new PDO($dsn, $db['user'], $db['pass']);
     } catch (PODException $e) {
         print $e->getMessage();
         die();

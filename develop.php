@@ -82,37 +82,24 @@ try {
 //sessionから取得する
 $userId = 2;
 
-$q = $db->query('SELECT * FROM task where user_id=' . $userId . ' and delete_flag = 0');
+$q = $db->query('SELECT * FROM task where user_id=' . $userId . ' and delete_flag = 0 and done_flag = 0');
 
 $undoneTasks = array();
 $doneTasks = array();
 $i = 0;
-$j = 0;
 while ($row = $q->fetch()) {
-    if ("$row[done_flag]" == 0) {
-        $undoneTasks[$i] = new Task();
-        $undoneTasks[$i]->setId("$row[category_id]");
-        $undoneTasks[$i]->setName("$row[name]");
-        $undoneTasks[$i]->setNote("$row[note]");
-        $undoneTasks[$i]->setUserId("$row[user_id]");
-        $undoneTasks[$i]->setPriority("$row[priority]");
-        $undoneTasks[$i]->setDeadlineFromString("$row[deadline]");
-        $undoneTasks[$i]->setdeleteFlag("$row[delete_flag]");
-        $undoneTasks[$i]->setdoneFlag("$row[done_flag]");
-        $i++;
-    } else if ("$row[done_flag]" == 1) {
-        $doneTasks[$j] = new Task();
-        $doneTasks[$j]->setId("$row[category_id]");
-        $doneTasks[$j]->setName("$row[name]");
-        $doneTasks[$j]->setNote("$row[note]");
-        $doneTasks[$j]->setUserId("$row[user_id]");
-        $doneTasks[$j]->setPriority("$row[priority]");
-        $doneTasks[$j]->setDeadlineFromString("$row[deadline]");
-        $doneTasks[$j]->setdeleteFlag("$row[delete_flag]");
-        $doneTasks[$j]->setdoneFlag("$row[done_flag]");
-        $j++;
-    }
-    
+
+    $undoneTasks[$i] = new Task();
+    $undoneTasks[$i]->setId("$row[category_id]");
+    $undoneTasks[$i]->setName("$row[name]");
+    $undoneTasks[$i]->setNote("$row[note]");
+    $undoneTasks[$i]->setUserId("$row[user_id]");
+    $undoneTasks[$i]->setPriority("$row[priority]");
+    $undoneTasks[$i]->setDeadlineFromString("$row[deadline]");
+    $undoneTasks[$i]->setdeleteFlag("$row[delete_flag]");
+    $undoneTasks[$i]->setdoneFlag("$row[done_flag]");
+    $i++;
+
 }
 
 ?>
@@ -170,7 +157,7 @@ while ($row = $q->fetch()) {
         </span>
       </div>
 
-     
+
         <div class="card-body">
           <textarea id="newNote" class="form-control" rows="3"></textarea>
         </div>
@@ -178,7 +165,7 @@ while ($row = $q->fetch()) {
           <a href="#" class="badge badge-info">プライベート</a>
           <a href="#" class="badge badge-pill badge-success">買い物リスト</a>
         </div>
-      
+
     </div>
 
     <ul id="sortable">
@@ -267,31 +254,31 @@ HTML;
                 </tr>
               </thead>
               <tbody>
-              
+
                 <?php
-                /****
+/****
 for ($i = 0; $i < count($doneTasks); $i++) {
-    $modalHtml = <<<MODALHTML
-        <tr id="tr{$doneTasks[$i]->getId()}">
-          <td scope="row">
-              <button class="btn btn-link unDoneBtn" type="button" data-taskid="{$doneTasks[$i]->getId()}">
-                  <i class="fas fa-check"></i>back
-              </button>
-          </td>
-          <td>
-              <h5>{$doneTasks[$i]->getName()}</h5>
-          </td>
-          <td>
-              <button class="btn btn-link" type="button" data-taskid="{$doneTasks[$i]->getId()}">
-                  <i class="fas fa-check"></i>delete
-              </button>
-          </td>
-        </tr>
+$modalHtml = <<<MODALHTML
+<tr id="tr{$doneTasks[$i]->getId()}">
+<td scope="row">
+<button class="btn btn-link unDoneBtn" type="button" data-taskid="{$doneTasks[$i]->getId()}">
+<i class="fas fa-check"></i>back
+</button>
+</td>
+<td>
+<h5>{$doneTasks[$i]->getName()}</h5>
+</td>
+<td>
+<button class="btn btn-link" type="button" data-taskid="{$doneTasks[$i]->getId()}">
+<i class="fas fa-check"></i>delete
+</button>
+</td>
+</tr>
 MODALHTML;
 
-    print $modalHtml;
+print $modalHtml;
 }
-*/
+ */
 ?>
               </tbody>
             </table>
