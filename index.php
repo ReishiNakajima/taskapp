@@ -40,8 +40,12 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
+$db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+$db['dbname'] = ltrim($db['path'], '/');
+$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
 try {
-  $db = new PDO('mysql://b7d179cccfc560:184764d8@us-cdbr-iron-east-01.cleardb.net/heroku_ddcb2b282511a28?reconnect=true');
+    $db = new PDO($dsn, $db['user'], $db['pass']);
 } catch (PODException $e) {
     print $e->getMessage();
     die();
