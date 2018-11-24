@@ -68,8 +68,12 @@ include 'entity/task.php';
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 // DBに接続する
+$db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+$db['dbname'] = ltrim($db['path'], '/');
+$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
 try {
-    $db = new PDO('mysql:host=localhost;dbname=mydb;charset=utf8', 'task', 'pass');
+    $db = new PDO($dsn, $db['user'], $db['pass']);
 } catch (PODException $e) {
     print $e->getMessage();
     die();

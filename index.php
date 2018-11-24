@@ -51,7 +51,7 @@ try {
     die();
 }
 
-$task = $db->query('SELECT * FROM task where user_id=1;');
+$task = $db->query('SELECT * FROM task where user_id=1');
 
 while ($row = $task->fetch()) {
     print "$row[name] \n";
