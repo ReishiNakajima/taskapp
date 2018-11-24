@@ -7,9 +7,13 @@ header('Content-type: text/json; charset= UTF-8');
 include 'entity/task.php';
 
 if (isset($_POST['id'])) {
-    // DBに接続する
-    try {
-        $db = new PDO('mysql:host=localhost;dbname=mydb;charset=utf8', 'task', 'pass');
+// DBに接続する
+$db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+$db['dbname'] = ltrim($db['path'], '/');
+$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
+try {
+    $db = new PDO($dsn, $db['user'], $db['pass']);
     } catch (PODException $e) {
         print $e->getMessage();
         die();
