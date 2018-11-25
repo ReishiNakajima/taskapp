@@ -134,7 +134,7 @@ while ($row = $q->fetch()) {
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div id="newTaskCard" data-priority="0" class="card bg-light mb-3" style="display:none">
+    <div id="newTaskCard" data-priority="0" class="card bg-light mb-3 editable" style="display:none">
       <div class="card-header">
         <span class="sortArea head-1">
           <i class="fas fa-bars"></i>
