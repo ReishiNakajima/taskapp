@@ -164,7 +164,7 @@ $('#trashBox').on('touchstart click', function (e) {
                 '<i class="fas fa-check"></i>back'+
               '</button></td><td><h5>'+
               element.name+
-              '</h5></td><td><button class="btn btn-link" type="button" data-taskid="'+
+              '</h5></td><td><button class="btn btn-link deleteBtn" type="button" data-taskid="'+
               element.id+'">'+
               '<i class="fas fa-check"></i>delete</button></td></tr>';
               $('#doneModal').children().find('tbody').append(trHTML);
@@ -199,3 +199,24 @@ $('.createBtn').on('touchstart click', function (e) {
         });
 
 });
+
+$('#doneModal').delegate('.deleteBtn','click',function(){
+    deleteTask($(this).attr('data-taskid'));
+});
+
+function deleteTask(id) {
+    $.ajax({
+        type: "POST",
+        url: "doneTask.php",
+        data: {
+            id: id,
+            deleteFlag: 1
+        }
+    })
+        .done((data) => {
+            $('#tr' + id).hide();
+        })
+        .fail((data) => {
+            console.log(data);
+        });
+};
