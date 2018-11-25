@@ -138,7 +138,7 @@ function unDoneTask(id) {
         });
 };
 
-$('#doneModal').delegate('.unDoneBtn','click',function(){
+$('#doneModal').delegate('.unDoneBtn', 'click', function () {
     unDoneTask($(this).attr('data-taskid'));
 });
 
@@ -157,17 +157,17 @@ $('#trashBox').on('touchstart click', function (e) {
             $('#doneModal').children().find('tbody').empty();
             for (let index = 0; index < data.length; index++) {
                 const element = data[index];
-                var trHTML='<tr id="tr'+element.id+'">'+
-                '<td scope="row">'+
-                '<button class="btn btn-link unDoneBtn" type="button" data-taskid="'+
-                element.id+'">'+
-                '<i class="fas fa-check"></i>back'+
-              '</button></td><td><h5>'+
-              element.name+
-              '</h5></td><td><button class="btn btn-link deleteBtn" type="button" data-taskid="'+
-              element.id+'">'+
-              '<i class="fas fa-check"></i>delete</button></td></tr>';
-              $('#doneModal').children().find('tbody').append(trHTML);
+                var trHTML = '<tr id="tr' + element.id + '">' +
+                    '<td scope="row">' +
+                    '<button class="btn btn-link unDoneBtn" type="button" data-taskid="' +
+                    element.id + '">' +
+                    '<i class="fas fa-check"></i>back' +
+                    '</button></td><td><h5>' +
+                    element.name +
+                    '</h5></td><td><button class="btn btn-link deleteBtn" type="button" data-taskid="' +
+                    element.id + '">' +
+                    '<i class="fas fa-check"></i>delete</button></td></tr>';
+                $('#doneModal').children().find('tbody').append(trHTML);
             }
             $('#doneModal').modal('show');
         })
@@ -192,7 +192,7 @@ $('.createBtn').on('touchstart click', function (e) {
         .done((data) => {
             $('#newTaskCard').hide();
             console.log(data);
-            
+
         })
         .fail((data) => {
             console.log(data);
@@ -217,7 +217,7 @@ function deleteTask(id) {
         });
 };
 
-$('#doneModal').delegate('.deleteBtn','click',function(){
+$('#doneModal').delegate('.deleteBtn', 'click', function () {
     deleteTask($(this).attr('data-taskid'));
 });
 

@@ -37,6 +37,9 @@
         <li class="nav-item active">
           <button id="newBtn" class="btn btn-primary nav-link"><i class="fas fa-plus-circle"></i>&nbsp;新規タスク作成</button>
         </li>
+        <li class="nav-item">
+          <button id="newBtn" class="btn btn-secondary nav-link"><i class="fas fa-trash"></i>&nbsp;ゴミ箱</button>
+        </li>
         <!--
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -56,8 +59,10 @@
       -->
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="タスクを検索する..." aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+        <input class="form-control" type="search" placeholder="タスクを検索する..." aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+        </div>
       </form>
     </div>
   </nav>
@@ -158,13 +163,13 @@ while ($row = $q->fetch()) {
       </div>
 
 
-        <div class="card-body">
-          <textarea id="newNote" class="form-control" rows="3"></textarea>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="badge badge-info">プライベート</a>
-          <a href="#" class="badge badge-pill badge-success">買い物リスト</a>
-        </div>
+      <div class="card-body">
+        <textarea id="newNote" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="badge badge-info">プライベート</a>
+        <a href="#" class="badge badge-pill badge-success">買い物リスト</a>
+      </div>
 
     </div>
 
