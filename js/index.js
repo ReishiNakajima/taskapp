@@ -203,7 +203,7 @@ $('.createBtn').on('touchstart click', function (e) {
 function deleteTask(id) {
     $.ajax({
         type: "POST",
-        url: "doneTask.php",
+        url: "deleteTask.php",
         data: {
             id: id,
             deleteFlag: 1
