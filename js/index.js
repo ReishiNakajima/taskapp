@@ -200,10 +200,6 @@ $('.createBtn').on('touchstart click', function (e) {
 
 });
 
-$('#doneModal').delegate('.deleteBtn','click',function(){
-    deleteTask($(this).attr('data-taskid'));
-});
-
 function deleteTask(id) {
     $.ajax({
         type: "POST",
@@ -220,3 +216,8 @@ function deleteTask(id) {
             console.log(data);
         });
 };
+
+$('#doneModal').delegate('.deleteBtn','click',function(){
+    deleteTask($(this).attr('data-taskid'));
+});
+
