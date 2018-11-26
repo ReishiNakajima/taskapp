@@ -76,7 +76,7 @@ error_reporting(E_ALL);
 $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
 $db['dbname'] = ltrim($db['path'], '/');
 $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-
+print "$dsn";
 try {
     $db = new PDO($dsn, $db['user'], $db['pass']);
 } catch (PODException $e) {
