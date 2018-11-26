@@ -92,7 +92,7 @@ $('.doneBtn').on('touchstart click', function (e) {
 function doneTask(id) {
     $.ajax({
         type: "POST",
-        url: "doneTask.php",
+        url: "ajaxTaskCrud.php?q=statusUpdate",
         data: {
             id: id,
             doneFlag: 1
@@ -146,10 +146,11 @@ $('#trashBox').on('touchstart click', function (e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
-        url: "selectSpecificTaskList.php",
+        url: "ajaxTaskCrud.php?q=getTaskList",
         data: {
             deleteFlag: 0,
-            doneFlag: 1
+            doneFlag: 1,
+            userId:2
         }
     })
         .done((data) => {

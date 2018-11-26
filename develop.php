@@ -69,43 +69,14 @@
   <?php
 
 include 'entity/task.php';
+include 'daoQuery.php';
 
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
-// DBに接続する
-$db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-$db['dbname'] = ltrim($db['path'], '/');
-$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-print "$dsn";
-try {
-    $db = new PDO($dsn, $db['user'], $db['pass']);
-} catch (PODException $e) {
-    print $e->getMessage();
-    die();
-}
 
-//sessionから取得する
 $userId = 2;
-
-$q = $db->query('SELECT * FROM task where user_id=' . $userId . ' and delete_flag = 0 and done_flag = 0');
-
-$undoneTasks = array();
-$doneTasks = array();
-$i = 0;
-while ($row = $q->fetch()) {
-
-    $undoneTasks[$i] = new Task();
-    $undoneTasks[$i]->setId("$row[id]");
-    $undoneTasks[$i]->setName("$row[name]");
-    $undoneTasks[$i]->setNote("$row[note]");
-    $undoneTasks[$i]->setUserId("$row[user_id]");
-    $undoneTasks[$i]->setPriority("$row[priority]");
-    $undoneTasks[$i]->setDeadlineFromString("$row[deadline]");
-    $undoneTasks[$i]->setdeleteFlag("$row[delete_flag]");
-    $undoneTasks[$i]->setdoneFlag("$row[done_flag]");
-    $i++;
-
-}
+$daoQuery = new daoQuery();
+$undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
 
 ?>
 
@@ -260,31 +231,6 @@ HTML;
               </thead>
               <tbody>
 
-                <?php
-/****
-for ($i = 0; $i < count($doneTasks); $i++) {
-$modalHtml = <<<MODALHTML
-<tr id="tr{$doneTasks[$i]->getId()}">
-<td scope="row">
-<button class="btn btn-link unDoneBtn" type="button" data-taskid="{$doneTasks[$i]->getId()}">
-<i class="fas fa-check"></i>back
-</button>
-</td>
-<td>
-<h5>{$doneTasks[$i]->getName()}</h5>
-</td>
-<td>
-<button class="btn btn-link" type="button" data-taskid="{$doneTasks[$i]->getId()}">
-<i class="fas fa-check"></i>delete
-</button>
-</td>
-</tr>
-MODALHTML;
-
-print $modalHtml;
-}
- */
-?>
               </tbody>
             </table>
           </div>

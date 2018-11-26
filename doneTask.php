@@ -3,8 +3,9 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 header('Content-type: text/json; charset= UTF-8');
-
 include 'entity/task.php';
+include 'daoQuery.php';
+
 
 if (isset($_POST['id'])) {
 // DBに接続する

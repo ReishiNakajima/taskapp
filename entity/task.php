@@ -197,12 +197,25 @@ class Task
      */
     public function parseBoolean($int)
     {
-        if ($int=1) {
+        if ($int = 1) {
             return true;
-        } else if($int=0){
+        } else if ($int = 0) {
             return false;
-        } else{
+        } else {
             return $int;
         }
+    }
+    public function toArray()
+    {
+        return array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'note' => $this->note,
+            'userId' => $this->userId,
+            'priority' => $this->priority,
+            'deadline' => $this->deadline,
+            'deleteFlag' => $this->deleteFlag,
+            'doneFlag' => $this->doneFlag,
+        );
     }
 }
