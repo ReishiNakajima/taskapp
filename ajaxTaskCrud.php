@@ -49,7 +49,8 @@ switch ($_GET['q']) {
         break;
     case 'create':
         if (isset($_POST['userId'])) {
-            $id = $daoUpdate->createTask($_POST['userId'], $_POST['name'], $_POST['deadline'], $_POST['note']);
+            $tmpDate = new DateTime($_POST['date'] . ' ' . $_POST['time']);
+            $id = $daoUpdate->createTask($_POST['userId'], $_POST['name'], $tmpDate->format('Y/m/d H:i'), $_POST['note']);
             echo $id;
         } else {
             echo '失敗';
