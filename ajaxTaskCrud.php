@@ -22,21 +22,34 @@ switch ($_GET['q']) {
             echo '失敗';
         }
         break;
-    case 'statusUpdate':
-        if (isset($_POST['id'],$_POST['doneFlag'])) {
-            $result = $daoUpdate->updateTaskDone($_POST['doneFlag'],$_POST['id']);
-            echo $result; 
+    case 'updateStatus':
+        if (isset($_POST['id'], $_POST['doneFlag'])) {
+            $result = $daoUpdate->updateTaskDone($_POST['doneFlag'], $_POST['id']);
+            echo $result;
         } else {
             echo '失敗';
         }
         break;
+    case 'updateInfo':
+        if (isset($_POST['id'])) {
+            $result = $daoUpdate->updateTaskInfo($_POST['name'],DateTime($_POST['date'].' '.$_POST['time'])->format('Y/m/d H:i') ,$_POST['note'],$_POST['id']);
+            echo $result;
+        } else {
+            echo '失敗';
+        }
+        break;
+    case 'create':
 
+        break;
+    case 'delete':
+
+        break;
     default:
         # code...
         break;
 }
 /**
- * 
+ *
 
  */
 /*

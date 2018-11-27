@@ -65,7 +65,7 @@ $('.modeChangeBtn').on('touchstart click', function (e) {
 function updateTask(id) {
     $.ajax({
         type: "POST",
-        url: "updateTask.php",
+        url: "ajaxTaskCrud.php?q=updateInfo",
         data: {
             id: id,
             name: $('#name' + id).val(),
@@ -92,7 +92,7 @@ $('.doneBtn').on('touchstart click', function (e) {
 function doneTask(id) {
     $.ajax({
         type: "POST",
-        url: "ajaxTaskCrud.php?q=statusUpdate",
+        url: "ajaxTaskCrud.php?q=updateStatus",
         data: {
             id: id,
             doneFlag: 1
@@ -124,7 +124,7 @@ $('#newBtn').on('touchstart click', function (e) {
 function unDoneTask(id) {
     $.ajax({
         type: "POST",
-        url: "doneTask.php",
+        url: "ajaxTaskCrud.php?q=updateStatus",
         data: {
             id: id,
             doneFlag: 0
