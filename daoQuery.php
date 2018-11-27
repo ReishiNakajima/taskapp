@@ -2,7 +2,6 @@
 include_once 'dao.php';
 class daoQuery extends dao
 {
-
     public function queryTaskList($userId, $doneFlag, $deleteFlag)
     {
         $stmt = $this->db->prepare('SELECT * FROM task where user_id=(?) and done_flag = (?) and delete_flag = (?)');
@@ -23,6 +22,4 @@ class daoQuery extends dao
         }
         return $taskList;
     }
-    
-
 }
