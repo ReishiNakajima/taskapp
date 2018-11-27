@@ -76,7 +76,7 @@ function updateTask(id) {
     })
         .done((data) => {
             $('#nameView' + id).text($('#name' + id).val());
-            $('#deadlineView' + id).text($('#date' + id).val()+$('#time' + id).val());
+            $('#deadlineView' + id).text($('#date' + id).val() + ' ' + $('#time' + id).val());
             $('#noteView' + id).text($('#note' + id).val());
         })
         .fail((data) => {
@@ -150,7 +150,7 @@ $('#trashBox').on('touchstart click', function (e) {
         data: {
             deleteFlag: 0,
             doneFlag: 1,
-            userId:2
+            userId: 2
         }
     })
         .done((data) => {
@@ -182,12 +182,13 @@ $('.createBtn').on('touchstart click', function (e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
-        url: "createTask.php",
+        url: "ajaxTaskCrud.php?q=create",
         data: {
             name: $('#newName').val(),
             date: $('#newDate').val(),
             time: $('#newTime').val(),
-            note: $('#newNote').val()
+            note: $('#newNote').val(),
+            userId: 2
         }
     })
         .done((data) => {
@@ -204,10 +205,9 @@ $('.createBtn').on('touchstart click', function (e) {
 function deleteTask(id) {
     $.ajax({
         type: "POST",
-        url: "deleteTask.php",
+        url: "ajaxTaskCrud.php?q=delete",
         data: {
-            id: id,
-            deleteFlag: 1
+            id: id
         }
     })
         .done((data) => {

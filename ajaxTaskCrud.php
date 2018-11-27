@@ -32,18 +32,28 @@ switch ($_GET['q']) {
         break;
     case 'updateInfo':
         if (isset($_POST['id'])) {
-            $tmpDate = new DateTime($_POST['date'].' '.$_POST['time']);
-            $result = $daoUpdate->updateTaskInfo($_POST['name'],$tmpDate->format('Y/m/d H:i') ,$_POST['note'],$_POST['id']);
+            $tmpDate = new DateTime($_POST['date'] . ' ' . $_POST['time']);
+            $result = $daoUpdate->updateTaskInfo($_POST['name'], $tmpDate->format('Y/m/d H:i'), $_POST['note'], $_POST['id']);
+            echo $result;
+        } else {
+            echo '失敗';
+        }
+        break;
+    case 'delete':
+        if (isset($_POST['id'])) {
+            $result = $daoUpdate->updateTaskDelete(1, $_POST['id']);
             echo $result;
         } else {
             echo '失敗';
         }
         break;
     case 'create':
-
-        break;
-    case 'delete':
-
+        if (isset($_POST['userId'])) {
+            $id = $daoUpdate->createTask($_POST['userId'], $_POST['name'], $_POST['deadline'], $_POST['note']);
+            echo $id;
+        } else {
+            echo '失敗';
+        }
         break;
     default:
         # code...
