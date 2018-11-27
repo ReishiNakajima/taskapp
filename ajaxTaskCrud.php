@@ -32,7 +32,8 @@ switch ($_GET['q']) {
         break;
     case 'updateInfo':
         if (isset($_POST['id'])) {
-            $result = $daoUpdate->updateTaskInfo($_POST['name'],DateTime($_POST['date'].' '.$_POST['time'])->format('Y/m/d H:i') ,$_POST['note'],$_POST['id']);
+            $tmpDate = new DateTime($_POST['date'].' '.$_POST['time']);
+            $result = $daoUpdate->updateTaskInfo($_POST['name'],$tmpDate->format('Y/m/d H:i') ,$_POST['note'],$_POST['id']);
             echo $result;
         } else {
             echo '失敗';
