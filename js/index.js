@@ -75,9 +75,9 @@ function updateTask(id) {
         }
     })
         .done((data) => {
-            $('#nameView' + data.id).text(data.name);
-            $('#deadlineView' + data.id).text(data.deadline);
-            $('#noteView' + data.id).text(data.note);
+            $('#nameView' + id).text($('#name' + id).val());
+            $('#deadlineView' + id).text($('#date' + id).val()+$('#time' + id).val());
+            $('#noteView' + id).text($('#note' + id).val());
         })
         .fail((data) => {
             console.log(data);
