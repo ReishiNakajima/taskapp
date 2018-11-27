@@ -51,7 +51,7 @@ switch ($_GET['q']) {
         if (isset($_POST['userId'])) {
             $tmpDate = new DateTime($_POST['date'] . ' ' . $_POST['time']);
             $id = $daoUpdate->createTask($_POST['userId'], $_POST['name'], $tmpDate->format('Y/m/d H:i'), $_POST['note']);
-            echo $id;
+            echo $id;//現状ＩＤ取得できず
         } else {
             echo '失敗';
         }
