@@ -27,7 +27,7 @@ class daoUpdate extends dao
     {
         $stmt = $this->db->prepare('INSERT INTO task (`name`, `deadline`, `user_id`, `note`) VALUES ((?),(?),(?),(?))');
         $result = $stmt->execute(array($name, $deadline, $userId, $note));
-        return mysql_insert_id();
+        return $this->db->insert_id;
     }
 
 }
