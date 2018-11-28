@@ -234,7 +234,7 @@ HTML;
 
     </ul>
 
-    <div id="trashBox">
+    <div id="doneBox">
       <button data-toggle="modal" data-target="#doneModal">
         <i class="fas fa-clipboard-check"></i>
       </button>

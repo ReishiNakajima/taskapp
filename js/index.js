@@ -241,7 +241,7 @@ $('#trashBtn').on('touchstart click', function (e) {
                     '<td scope="row">' +
                     '<button class="btn btn-link finalDeleteBtn" type="button" data-taskid="' +
                     element.id + '">' +
-                    '<i class="fas fa-check"></i>back' +
+                    '<i class="fas fa-check"></i>delete' +
                     '</button></td><td><h5>' +
                     element.name +
                     '</h5></td></tr>';
