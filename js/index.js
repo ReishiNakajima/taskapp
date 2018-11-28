@@ -59,6 +59,7 @@ $('.modeChangeBtn').on('touchstart click', function (e) {
     } else {
         forEditCard(id);
     }
+    $('collapseOne'+id).collapse()
 });
 //ダブルクリック対策必要
 
