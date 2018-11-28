@@ -194,8 +194,7 @@ for ($i = 0; $i < count($undoneTasks); $i++) {
                       <i class="fas fa-bars"></i>
                     </span>
                     <span class="head-2">
-                      <button class="btn btn-link modeChangeBtn" type="button" data-taskid="{$undoneTasks[$i]->getId()}" data-role="edit" data-toggle="collapse" data-target="#collapseOne{$undoneTasks[$i]->getId()}"
-                        aria-expanded="true" aria-controls="collapseOne">
+                      <button class="btn btn-link modeChangeBtn" type="button" data-taskid="{$undoneTasks[$i]->getId()}" data-role="edit" aria-expanded="true" aria-controls="collapseOne">
                         <i class="fas fa-edit"></i>
                         <a>edit</a>
                       </button>
