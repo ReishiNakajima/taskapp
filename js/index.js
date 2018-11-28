@@ -106,9 +106,9 @@ function doneTask(id) {
                 $('#taskCard' + id).addClass('deletedCard');
                 $('#taskCard' + id).fadeOut(1000);
             }, 500);
-            $('#trashBox').addClass('purupuru');
+            $('#doneBox').addClass('purupuru');
             setTimeout(() => {
-                $('#trashBox').removeClass('purupuru');
+                $('#doneBox').removeClass('purupuru');
             }, 1800);
         })
         .fail((data) => {
@@ -142,7 +142,7 @@ $('#doneModal').delegate('.unDoneBtn', 'click', function () {
     unDoneTask($(this).attr('data-taskid'));
 });
 
-$('#trashBox').on('touchstart click', function (e) {
+$('#doneBox').on('touchstart click', function (e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
@@ -222,3 +222,55 @@ $('#doneModal').delegate('.deleteBtn', 'click', function () {
     deleteTask($(this).attr('data-taskid'));
 });
 
+$('#trashBtn').on('touchstart click', function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "ajaxTaskCrud.php?q=getTaskList",
+        data: {
+            deleteFlag: 1,
+            userId: 2
+        }
+    })
+        .done((data) => {
+            console.log(data);
+            $('#trashModal').children().find('tbody').empty();
+            for (let index = 0; index < data.length; index++) {
+                const element = data[index];
+                var trHTML = '<tr id="tr' + element.id + '">' +
+                    '<td scope="row">' +
+                    '<button class="btn btn-link finalDeleteBtn" type="button" data-taskid="' +
+                    element.id + '">' +
+                    '<i class="fas fa-check"></i>back' +
+                    '</button></td><td><h5>' +
+                    element.name +
+                    '</h5></td></tr>';
+                $('#trashModal').children().find('tbody').append(trHTML);
+            }
+            $('#trashModal').modal('show');
+        })
+        .fail((data) => {
+            console.log(data);
+        });
+
+});
+
+function finalDeleteTask(id) {
+    $.ajax({
+        type: "POST",
+        url: "ajaxTaskCrud.php?q=finalDelete",
+        data: {
+            id: id
+        }
+    })
+        .done((data) => {
+            $('#tr' + id).hide();
+        })
+        .fail((data) => {
+            console.log(data);
+        });
+};
+
+$('#trashModal').delegate('.finalDeleteBtn', 'click', function () {
+    finalDeleteTask($(this).attr('data-taskid'));
+});

@@ -18,6 +18,13 @@ switch ($_GET['q']) {
                 $json[$i] = $taskList[$i]->toArray();
             }
             echo json_encode($json);
+        } else if (isset($_POST['deleteFlag'], $_POST['userId'])) {
+            $taskList = $daoQuery->queryTaskListByUserAndDelete($_POST['userId'], $_POST['deleteFlag']);
+            $json = array();
+            for ($i = 0; $i < count($taskList); $i++) {
+                $json[$i] = $taskList[$i]->toArray();
+            }
+            echo json_encode($json);
         } else {
             echo '失敗';
         }
@@ -51,7 +58,15 @@ switch ($_GET['q']) {
         if (isset($_POST['userId'])) {
             $tmpDate = new DateTime($_POST['date'] . ' ' . $_POST['time']);
             $id = $daoUpdate->createTask($_POST['userId'], $_POST['name'], $tmpDate->format('Y/m/d H:i'), $_POST['note']);
-            echo $id;//現状ＩＤ取得できず
+            echo $id; //現状ＩＤ取得できず
+        } else {
+            echo '失敗';
+        }
+        break;
+    case 'finalDelete':
+        if (isset($_POST['id'])) {
+            $result = $daoUpdate->deleteTask($_POST['id']);
+            echo $result;
         } else {
             echo '失敗';
         }

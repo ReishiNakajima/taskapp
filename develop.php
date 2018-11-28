@@ -25,7 +25,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">Tasks for Personal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,10 +35,10 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button id="newBtn" class="btn btn-primary nav-link"><i class="fas fa-plus-circle"></i>&nbsp;新規タスク作成</button>
+          <button id="newBtn" class="btn btn-primary nav-link mr-sm-2"><i class="fas fa-plus-circle"></i>&nbsp;新規作成</button>
         </li>
         <li class="nav-item">
-          <button id="newBtn" class="btn btn-secondary nav-link"><i class="fas fa-trash"></i>&nbsp;ゴミ箱</button>
+          <button id="trashBtn" class="btn btn-secondary nav-link" data-toggle="modal" data-target="#trashModal"><i class="fas fa-trash"></i>&nbsp;ゴミ箱</button>
         </li>
         <!--
         <li class="nav-item">
@@ -66,6 +66,37 @@
       </form>
     </div>
   </nav>
+ <!-- Modal -->
+ <div class="modal fade" id="trashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+ aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalCenterTitle">削除済みタスク</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>タスク名</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <?php
 
 include 'entity/task.php';
@@ -204,7 +235,7 @@ HTML;
     </ul>
 
     <div id="trashBox">
-      <button data-toggle="modal" data-target="#exampleModalCenter">
+      <button data-toggle="modal" data-target="#doneModal">
         <i class="fas fa-clipboard-check"></i>
       </button>
     </div>
@@ -224,8 +255,8 @@ HTML;
             <table class="table">
               <thead>
                 <tr>
-                  <th>タスク名</th>
                   <th></th>
+                  <th>タスク名</th>
                   <th></th>
                 </tr>
               </thead>
@@ -236,7 +267,6 @@ HTML;
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            <button type="button" class="btn btn-primary">未完了にする</button>
           </div>
         </div>
       </div>

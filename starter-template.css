@@ -86,18 +86,18 @@ main {
   background-color: white;
 }
 
-#trashBox{
+#doneBox{
   position:fixed;
   bottom:3%;
   right:3%;
   z-index:999;
  }
 
- #trashBox i{
+ #doneBox i{
   font-size: 100px;
  }
 
- #trashBox button{
+ #doneBox button{
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -138,5 +138,51 @@ main {
     65%  { transform: scale(1.0, 1.03) translate(2%, -2%) skew(-3deg, 0deg); }
     80%  { transform: scale(1.0, 0.97) translate(-2%, 2%) skew(3deg, 0deg); }
     100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  }
+
+  @media screen and (max-width: 425px) { 
+    .card-header{
+      display: table;
+      height: 67px;
+    }
+    
+    .card-header span{
+      display: table-cell;
+      height: 100%;
+    }
+    
+    /* 並び替えボタン */
+    .card .card-header span.head-1{
+      display: none;
+    }
+    /* edit or save button */
+    .card .card-header span.head-2{
+      width:5%;
+      padding-top: 6px;
+    }
+    
+    .card .card-header span.head-3{
+      width:90%; 
+    }
+    
+    .card .card-header span.head-4{
+      display: none;
+    }
+    
+    .card .card-header span.head-5{
+      width:5%; 
+    }
+    
+    .editable .card-header span.head-3{
+      width:40%; 
+    }
+    
+    .editable .card-header span.head-4{
+      width:30%; 
+    }
+    
+    .editable .card-header span.head-5{
+      width:15%; 
+    }
   }
   
