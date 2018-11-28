@@ -192,6 +192,10 @@ $('.createBtn').on('touchstart click', function (e) {
         }
     })
         .done((data) => {
+            $('#newName').val('');
+            $('#newDate').val('');
+            $('#newTime').val('');
+            $('#newNote').val('');
             $('#newTaskCard').hide();
             console.log(data);
 
@@ -200,6 +204,15 @@ $('.createBtn').on('touchstart click', function (e) {
             console.log(data);
         });
 
+});
+$('.cancelBtn').click(function (e) { 
+    e.preventDefault();
+    $('#newName').val('');
+    $('#newDate').val('');
+    $('#newTime').val('');
+    $('#newNote').val('');
+    $('#newTaskCard').hide();
+    
 });
 
 function deleteTask(id) {

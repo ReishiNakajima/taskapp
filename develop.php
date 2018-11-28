@@ -169,6 +169,11 @@ $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
         <textarea id="newNote" class="form-control" rows="3"></textarea>
       </div>
       <div class="card-footer">
+      <button class="btn btn-link cancelBtn" type="button" data-editable="false" data-toggle="collapse" data-target="#collapseOne0"
+            aria-expanded="true" aria-controls="collapseOne">
+            <i class="fas fa-ban"></i>
+            <a>cancel</a>
+        </button>
         <a href="#" class="badge badge-info">プライベート</a>
         <a href="#" class="badge badge-pill badge-success">買い物リスト</a>
       </div>
