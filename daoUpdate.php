@@ -32,7 +32,7 @@ class daoUpdate extends dao
 
     public function deleteTask($id)
     {
-        $stmt = $this->db->prepare('DELETE task where id=(?)');
+        $stmt = $this->db->prepare('DELETE FROM task where id=(?)');
         $result = $stmt->execute(array($id));
         return $result;
     }
