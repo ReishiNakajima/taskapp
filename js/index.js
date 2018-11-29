@@ -56,8 +56,10 @@ $('#sortable').delegate('.modeChangeBtn', 'touchstart click', function (e) {
     if ($(this).attr('data-role') == 'save') {
         updateTask($(this).attr('data-taskid'));
         forViewCrad(id);
+        $('#collapseOne'+$(this).attr('data-taskid')).collapse('show')
     } else {
         forEditCard(id);
+        $('#collapseOne'+$(this).attr('data-taskid')).collapse('hide')
     }
     $('collapseOne'+id).collapse()
 });
