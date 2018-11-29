@@ -108,6 +108,7 @@ function doneTask(id) {
                 $('#taskCard' + id).addClass('deletedCard');
                 $('#taskCard' + id).fadeOut(1000);
             }, 500);
+            updateProgress();
             $('#doneBox').addClass('purupuru');
             setTimeout(() => {
                 $('#doneBox').removeClass('purupuru');
@@ -195,6 +196,7 @@ $('.createBtn').on('touchstart click', function (e) {
     })
         .done((data) => {
             updateTaskCard();
+            updateProgress();
             $('#newName').val('');
             $('#newDate').val('');
             $('#newTime').val('');
@@ -307,12 +309,27 @@ function updateTaskCard() {
 
 $('div').on('hide.bs.modal', function (e) {
     updateTaskCard();
+    updateProgress();
 });
 
 $('#viewMode').on('touchstart click', function (e) {
     if ($(this).prop("checked")) {
         $('.card-body').parents('div.collapse').collapse('show');
-    }else{
+    } else {
         $('.collapse').collapse('hide');
     }
 });
+
+function updateProgress() {
+    $.ajax({
+        type: "POST",
+        url: "ajaxGetHtml.php?q=progressBar"
+    })
+        .done((data) => {
+            $('#progressArea').empty();
+            $('#progressArea').append(data);
+        })
+        .fail((data) => {
+            console.log(data);
+        });
+};

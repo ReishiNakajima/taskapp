@@ -122,33 +122,13 @@ $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
       </label>
     </div>
     <h1 class="mb-3">Your List</h1>
-
-    <div class="mb-3 progress" style="height: 30px;">
-      <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 45%" aria-valuenow="40"
-        aria-valuemin="0" aria-valuemax="100">45%</div>
-    </div>
-
-    <style>
-      .progress-bar {
-              animation: fadeIn 1s ease 0s 1 normal;
-              }
-              @keyframes fadeIn {
-                0% {width: 0%}
-                100% {width: 45%}
-              }
-
-              @-webkit-keyframes fadeIn {
-                0% {width: 0%}
-                100% {width: 45%}
-              }
-          </style>
-
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-      <strong>期限が今日のタスク件数</strong><br> あと2件／全10件
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+<div id="progressArea">
+<?php
+include_once 'view/progressBar.php';
+    $count= $daoQuery->countTodayByState($userId);
+    print viewBar($count['1'],$count['0']);
+?>
+</div>
     <div id="newTaskCard" data-priority="0" class="card bg-light mb-3 editable" style="display:none">
       <div class="card-header">
         <span class="sortArea head-1">

@@ -43,4 +43,14 @@ class daoQuery extends dao
         }
         return $taskList;
     }
+    public function countTodayByState($userId)
+    {
+        $stmt = $this->db->prepare('SELECT done_flag,count(id) as sum from task where deadline<(?) and delete_flag=0 and user_id=(?) group by done_flag');
+        $stmt->execute(array(date('Y/m/d', strtotime('+1 day')),$userId));
+        $count = array('done' => 0, 'undone' => 0);
+        while ($row = $stmt->fetch()) {
+            $count["$row[done_flag]"] = "$row[sum]";
+        }
+        return $count;
+    }
 }
