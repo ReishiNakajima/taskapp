@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">Tasks for Personal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,8 @@
           <button id="newBtn" class="btn btn-primary nav-link mr-sm-2"><i class="fas fa-plus-circle"></i>&nbsp;新規作成</button>
         </li>
         <li class="nav-item">
-          <button id="trashBtn" class="btn btn-secondary nav-link" data-toggle="modal" data-target="#trashModal"><i class="fas fa-trash"></i>&nbsp;ゴミ箱</button>
+          <button id="trashBtn" class="btn btn-secondary nav-link" data-toggle="modal" data-target="#trashModal"><i
+              class="fas fa-trash"></i>&nbsp;ゴミ箱</button>
         </li>
         <!--
         <li class="nav-item">
@@ -66,36 +67,36 @@
       </form>
     </div>
   </nav>
- <!-- Modal -->
- <div class="modal fade" id="trashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
- aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered" role="document">
-   <div class="modal-content">
-     <div class="modal-header">
-       <h5 class="modal-title" id="exampleModalCenterTitle">削除済みタスク</h5>
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-     </div>
-     <div class="modal-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>タスク名</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
+  <!-- Modal -->
+  <div class="modal fade" id="trashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">削除済みタスク</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>タスク名</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
 
-              </tbody>
-            </table>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-          </div>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
         </div>
       </div>
     </div>
+  </div>
 
   <?php
 
@@ -112,8 +113,15 @@ $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
 ?>
 
   <main role="main" class="container">
-
-    <h1 class="mb-3">Your Tasks List</h1>
+    <div class="switch">
+      <span>表示切替</span>
+      <label class="switch__label">
+        <input id="viewMode" type="checkbox" class="switch__input" />
+        <span class="switch__content"></span>
+        <span class="switch__circle"></span>
+      </label>
+    </div>
+    <h1 class="mb-3">Your List</h1>
 
     <div class="mb-3 progress" style="height: 30px;">
       <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 45%" aria-valuenow="40"
@@ -169,10 +177,10 @@ $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
         <textarea id="newNote" class="form-control" rows="3"></textarea>
       </div>
       <div class="card-footer">
-      <button class="btn btn-link cancelBtn" type="button" data-editable="false" data-toggle="collapse" data-target="#collapseOne0"
-            aria-expanded="true" aria-controls="collapseOne">
-            <i class="fas fa-ban"></i>
-            <a>cancel</a>
+        <button class="btn btn-link cancelBtn" type="button" data-editable="false" data-toggle="collapse" data-target="#collapseOne0"
+          aria-expanded="true" aria-controls="collapseOne">
+          <i class="fas fa-ban"></i>
+          <a>cancel</a>
         </button>
         <a href="#" class="badge badge-info">プライベート</a>
         <a href="#" class="badge badge-pill badge-success">買い物リスト</a>

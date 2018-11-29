@@ -56,12 +56,12 @@ $('#sortable').delegate('.modeChangeBtn', 'touchstart click', function (e) {
     if ($(this).attr('data-role') == 'save') {
         updateTask($(this).attr('data-taskid'));
         forViewCrad(id);
-        $('#collapseOne'+$(this).attr('data-taskid')).collapse('show')
+        $('#collapseOne' + $(this).attr('data-taskid')).collapse('hide');
     } else {
         forEditCard(id);
-        $('#collapseOne'+$(this).attr('data-taskid')).collapse('hide')
+        $('#collapseOne' + $(this).attr('data-taskid')).collapse('show');
     }
-    $('collapseOne'+id).collapse()
+    $('collapseOne' + id).collapse()
 });
 //ダブルクリック対策必要
 
@@ -208,14 +208,14 @@ $('.createBtn').on('touchstart click', function (e) {
         });
 
 });
-$('.cancelBtn').click(function (e) { 
+$('.cancelBtn').click(function (e) {
     e.preventDefault();
     $('#newName').val('');
     $('#newDate').val('');
     $('#newTime').val('');
     $('#newNote').val('');
     $('#newTaskCard').hide();
-    
+
 });
 
 function deleteTask(id) {
@@ -307,4 +307,12 @@ function updateTaskCard() {
 
 $('div').on('hide.bs.modal', function (e) {
     updateTaskCard();
-  })
+});
+
+$('#viewMode').on('touchstart click', function (e) {
+    if ($(this).prop("checked")) {
+        $('.card-body').parents('div.collapse').collapse('show');
+    }else{
+        $('.collapse').collapse('hide');
+    }
+});
