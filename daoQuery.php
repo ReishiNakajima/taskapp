@@ -51,6 +51,12 @@ class daoQuery extends dao
         while ($row = $stmt->fetch()) {
             $count["$row[done_flag]"] = "$row[sum]";
         }
+        if (!isset($count['1'])) {
+            $count['1']=0;
+        }
+        if (!isset($count['0'])) {
+            $count['0']=0;
+        }
         return $count;
     }
 }
