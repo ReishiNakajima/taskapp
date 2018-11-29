@@ -288,3 +288,17 @@ function finalDeleteTask(id) {
 $('#trashModal').delegate('.finalDeleteBtn', 'click', function () {
     finalDeleteTask($(this).attr('data-taskid'));
 });
+
+function updateTaskCard(id) {
+    $.ajax({
+        type: "POST",
+        url: "ajaxGetHtml.php?q=undoneTaskCardList"
+    })
+        .done((data) => {
+            $('#sortable').empty();
+            $('#sortable').append(data);
+        })
+        .fail((data) => {
+            console.log(data);
+        });
+};
