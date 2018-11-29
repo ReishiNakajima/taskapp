@@ -50,7 +50,7 @@ function forViewCrad(taskCardId) {
 }
 
 // ボタン押下時に発火
-$('.modeChangeBtn').on('touchstart click', function (e) {
+$('#sortable').delegate('.modeChangeBtn', 'touchstart click', function (e) {
     e.preventDefault();
     var id = $(this).parents('.card').attr('id');
     if ($(this).attr('data-role') == 'save') {
@@ -84,8 +84,7 @@ function updateTask(id) {
             console.log(data);
         });
 }
-
-$('.doneBtn').on('touchstart click', function (e) {
+$('#sortable').delegate('.doneBtn', 'touchstart click', function (e) {
     e.preventDefault();
     doneTask($(this).attr('data-taskid'));
 });
