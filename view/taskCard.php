@@ -3,39 +3,39 @@ function viewTaskCard($taskCard)
 {
 $cardHtml = <<<HTML
 <li>
-    <div id="taskCard{$undoneTasks[$i]->getId()}" data-priority="{$undoneTasks[$i]->getPriority()}" class="accordion card bg-light mb-3">
+    <div id="taskCard{$taskCard->getId()}" data-priority="{$taskCard->getPriority()}" class="accordion card bg-light mb-3">
 
     <div class="card-header">
         <span class="sortArea head-1">
           <i class="fas fa-bars"></i>
         </span>
         <span class="head-2">
-          <button class="btn btn-link modeChangeBtn" type="button" data-taskid="{$undoneTasks[$i]->getId()}" data-role="edit" aria-expanded="true" aria-controls="collapseOne">
+          <button class="btn btn-link modeChangeBtn" type="button" data-taskid="{$taskCard->getId()}" data-role="edit" aria-expanded="true" aria-controls="collapseOne">
             <i class="fas fa-edit"></i>
             <a>edit</a>
           </button>
         </span>
         <span class="head-3">
-          <h5 id="nameView{$undoneTasks[$i]->getId()}" class="card-title font-weight-bold">{$undoneTasks[$i]->getName()}</h5>
-          <input id="name{$undoneTasks[$i]->getId()}" name="name{$undoneTasks[$i]->getId()}" type="text" class="form-control" placeholder="Title" aria-label="Title"  value="{$undoneTasks[$i]->getName()}" aria-describedby="basic-addon1" style="display: none;">
+          <h5 id="nameView{$taskCard->getId()}" class="card-title font-weight-bold">{$taskCard->getName()}</h5>
+          <input id="name{$taskCard->getId()}" name="name{$taskCard->getId()}" type="text" class="form-control" placeholder="Title" aria-label="Title"  value="{$taskCard->getName()}" aria-describedby="basic-addon1" style="display: none;">
         </span>
         <span class="head-4">
           <i class="far fa-clock text-muted"></i>
-          <a id="deadlineView{$undoneTasks[$i]->getId()}" class="text-muted font-weight-bold">{$undoneTasks[$i]->getDeadline()->format('Y/m/d H:i')}</a>
-          <input id="date{$undoneTasks[$i]->getId()}" name="date{$undoneTasks[$i]->getId()}" class="datepicker form-control" name="date" type="text" placeholder="Date" value="{$undoneTasks[$i]->getDeadline()->format('Y/m/d')}" style="display: none;">
+          <a id="deadlineView{$taskCard->getId()}" class="text-muted font-weight-bold">{$taskCard->getDeadline()->format('Y/m/d H:i')}</a>
+          <input id="date{$taskCard->getId()}" name="date{$taskCard->getId()}" class="datepicker form-control" name="date" type="text" placeholder="Date" value="{$taskCard->getDeadline()->format('Y/m/d')}" style="display: none;">
         </span>
         <span class="head-5">
-          <button class="btn btn-link doneBtn" type="button" data-taskid="{$undoneTasks[$i]->getId()}">
+          <button class="btn btn-link doneBtn" type="button" data-taskid="{$taskCard->getId()}">
             <i class="fas fa-check"></i>done
           </button>
-          <input id="time{$undoneTasks[$i]->getId()}" name="time{$undoneTasks[$i]->getId()}" class="timepicker form-control" name="time" type="time" placeholder="Time" value="{$undoneTasks[$i]->getDeadline()->format('H:i')}" style="display: none;">
+          <input id="time{$taskCard->getId()}" name="time{$taskCard->getId()}" class="timepicker form-control" name="time" type="time" placeholder="Time" value="{$taskCard->getDeadline()->format('H:i')}" style="display: none;">
         </span>
       </div>
 
-      <div id="collapseOne{$undoneTasks[$i]->getId()}" class="collapse">
+      <div id="collapseOne{$taskCard->getId()}" class="collapse">
         <div class="card-body">
-          <p  id="noteView{$undoneTasks[$i]->getId()}"class="card-text">{$undoneTasks[$i]->getNote()}</p>
-          <textarea id="note{$undoneTasks[$i]->getId()}" name="note{$undoneTasks[$i]->getId()}" class="form-control" rows="3" style="display: none;">{$undoneTasks[$i]->getNote()}</textarea>
+          <p  id="noteView{$taskCard->getId()}"class="card-text">{$taskCard->getNote()}</p>
+          <textarea id="note{$taskCard->getId()}" name="note{$taskCard->getId()}" class="form-control" rows="3" style="display: none;">{$taskCard->getNote()}</textarea>
         </div>
         <div class="card-footer">
           <a href="#" class="badge badge-info">プライベート</a>
