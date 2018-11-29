@@ -185,6 +185,8 @@ $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
       <?php
 
 for ($i = 0; $i < count($undoneTasks); $i++) {
+  include_once 'view/taskCard.php';
+/**
     $cardHtml = <<<HTML
             <li>
                 <div id="taskCard{$undoneTasks[$i]->getId()}" data-priority="{$undoneTasks[$i]->getPriority()}" class="accordion card bg-light mb-3">
@@ -229,8 +231,8 @@ for ($i = 0; $i < count($undoneTasks); $i++) {
                 </div>
             </li>
 HTML;
-
-    print $cardHtml;
+*/
+    print viewTaskCard($undoneTasks[$i]);
 
 }
 
