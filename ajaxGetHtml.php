@@ -2,9 +2,8 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-include 'entity/task.php';
-include 'entity/task.php';
-include 'daoQuery.php';
+include_once 'entity/task.php';
+include_once 'daoQuery.php';
 include_once 'view/taskCard.php';
 
 $userId = 2;
