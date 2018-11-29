@@ -1,7 +1,7 @@
 <?php
 function viewTaskCard($taskCard)
 {
-$cardHtml = <<<HTML
+return $cardHtml = <<<HTML
 <li>
     <div id="taskCard{$taskCard->getId()}" data-priority="{$taskCard->getPriority()}" class="accordion card bg-light mb-3">
 
