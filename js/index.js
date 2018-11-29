@@ -193,6 +193,7 @@ $('.createBtn').on('touchstart click', function (e) {
         }
     })
         .done((data) => {
+            updateTaskCard();
             $('#newName').val('');
             $('#newDate').val('');
             $('#newTime').val('');
@@ -289,7 +290,7 @@ $('#trashModal').delegate('.finalDeleteBtn', 'click', function () {
     finalDeleteTask($(this).attr('data-taskid'));
 });
 
-function updateTaskCard(id) {
+function updateTaskCard() {
     $.ajax({
         type: "POST",
         url: "ajaxGetHtml.php?q=undoneTaskCardList"
@@ -302,3 +303,7 @@ function updateTaskCard(id) {
             console.log(data);
         });
 };
+
+$('div').on('hide.bs.modal', function (e) {
+    updateTaskCard();
+  })
