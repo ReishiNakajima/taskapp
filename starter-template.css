@@ -2,273 +2,294 @@ body {
   padding-top: 5rem;
   overflow-y: scroll;
 }
+
 main {
   text-align: center;
+  margin-bottom: 80px;
 }
 
-#sortable{
+#sortable {
   padding: 0;
 }
-#sortable li{
+
+#sortable li {
   list-style: none;
 }
 
-.sortArea{
+.sortArea {
   cursor: move;
 }
 
-.progress-bar-animated{
+.progress-bar-animated {
   animation-direction: reverse;
 }
 
-.card-header{
+.card-header {
   display: table;
   height: 67px;
 }
 
-.card-header span{
+.card-header span {
   display: table-cell;
   height: 100%;
 }
 
 /* 並び替えボタン */
-.card .card-header span.head-1{
-  width:5%;
+
+.card .card-header span.head-1 {
+  width: 5%;
   padding-top: 6px;
 }
+
 /* edit or save button */
-.card .card-header span.head-2{
-  width:10%;
+
+.card .card-header span.head-2 {
+  width: 10%;
   padding-top: 6px;
 }
 
-.card .card-header span.head-3{
-  width:45%; 
+.card .card-header span.head-3 {
+  width: 45%;
 }
 
-.card .card-header span.head-4{
-  width:30%; 
+.card .card-header span.head-4 {
+  width: 30%;
 }
 
-.card .card-header span.head-5{
-  width:10%; 
+.card .card-header span.head-5 {
+  width: 10%;
 }
 
-.editable .card-header span.head-3{
-  width:40%; 
+.editable .card-header span.head-3 {
+  width: 40%;
 }
 
-.editable .card-header span.head-4{
-  width:30%; 
+.editable .card-header span.head-4 {
+  width: 30%;
 }
 
-.editable .card-header span.head-5{
-  width:15%; 
+.editable .card-header span.head-5 {
+  width: 15%;
 }
 
-.editable .card-header span input{
+.editable .card-header span input {
   text-align: center;
   width: 90%;
   padding: 0;
 }
 
-.editable .card-header span.head-3 input{
+.editable .card-header span.head-3 input {
   font-size: 1.25rem;
   font-weight: 700;
   color: black;
 }
 
-.editable .card-header span.head-4 input, .editable .card-header span.head-5 input{
+.editable .card-header span.head-4 input, .editable .card-header span.head-5 input {
   font-weight: 700;
   color: #6c757d;
 }
-.datepicker.form-control, .timepicker.form-control{
+
+.datepicker.form-control, .timepicker.form-control {
   background-color: white;
 }
 
-#doneBox{
-  position:fixed;
-  bottom:3%;
-  right:3%;
-  z-index:999;
- }
-
- #doneBox i{
-  font-size: 100px;
- }
-
- #doneBox button{
+#doneBox button {
   background-color: transparent;
   border: none;
   cursor: pointer;
   outline: none;
   padding: 0;
   appearance: none;
- }
+}
 
- .deletedCard {
+.deletedCard {
   animation: fadeout 1s ease 0s 1 normal;
-  }
-  @keyframes fadeout {
-    0% {
-      transform: translateX(0%)
-    }
-    100% {
-      transform: translateX(100%)
-    }
-  }
-  
-  @-webkit-keyframes fadeout {
-    0% {
-      transform: translateX(0%)
-    }
-    100% {
-      transform: translateX(100%)
-    }
-  }
+}
 
-  .purupuru {
-    animation: purupuru 0.8s linear 1s 1;
+@keyframes fadeout {
+  0% {
+    transform: translateX(0%)
   }
-   
-  @keyframes purupuru {
-    0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
-    20%  { transform: scale(1.0, 1.06) translate(-5%, -4%) skew(6deg, 0deg); }
-    50%  { transform: scale(1.0, 0.94) translate(5%, 4%) skew(-6deg, 0deg); }
-    65%  { transform: scale(1.0, 1.03) translate(2%, -2%) skew(-3deg, 0deg); }
-    80%  { transform: scale(1.0, 0.97) translate(-2%, 2%) skew(3deg, 0deg); }
-    100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  100% {
+    transform: translateX(100%)
   }
-.switch{
+}
+
+@-webkit-keyframes fadeout {
+  0% {
+    transform: translateX(0%)
+  }
+  100% {
+    transform: translateX(100%)
+  }
+}
+
+.card-footer button {
+  display: inline-block;
+
+  width: 40px;
+  height: 40px;
+
+  margin-left: 5px;
+  margin-right: 5px;
+
+  background-color: #4285f4;
+
+  border-radius: 100%;
+  border-style: none;
+}
+
+.card-footer button:nth-child(2) {
+  background-color: #cb4437;
+}
+
+.card-footer button:nth-child(3) {
+  background-color: #f4b400;
+}
+
+.switch {
   float: right;
 }
+
 /*** iOS ***/
+
 .switch__label {
-	width: 50px;
-	position: relative;
-	display: inline-block;
+  width: 50px;
+  position: relative;
+  display: inline-block;
 }
+
 .switch__content {
-	display: block;
+  display: block;
   cursor: pointer;
   position: relative;
   border-radius: 30px;
   height: 31px;
-overflow: hidden;
+  overflow: hidden;
 }
+
 .switch__content:before {
-	content: "";
-	display: block;
-	position: absolute;
-	width: calc(100% - 3px);
-	height: calc(100% - 3px);
-	top: 0;
-	left: 0;
-	border: 1.5px solid #E5E5EA;
-	border-radius: 30px;
-	background-color: #fff;
+  content: "";
+  display: block;
+  position: absolute;
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+  top: 0;
+  left: 0;
+  border: 1.5px solid #E5E5EA;
+  border-radius: 30px;
+  background-color: #fff;
 }
+
 .switch__content:after {
-	content: "";
-	display: block;
-	position: absolute;
-	background-color: transparent;
-	width: 0;
-	height: 0;
-	top: 50%;
-	left: 50%;
-	border-radius: 30px;
-	-webkit-transition: all .5s;
-	   -moz-transition: all .5s;
-	    -ms-transition: all .5s;
-	     -o-transition: all .5s;
-	        transition: all .5s;
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  border-radius: 30px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
 }
+
 .switch__input {
-	display: none;
+  display: none;
 }
 
 .switch__circle {
-	display: block;
-	top: 2px;
-	left: 2px;
-	position: absolute;
-	-webkit-box-shadow: 0 2px 6px #999;
-	        box-shadow: 0 2px 6px #999;
-	width: 27px;
-	height: 27px;
-	-webkit-border-radius: 20px;
-	        border-radius: 20px;
-	background-color: #fff;
-	-webkit-transition: all .5s;
-	   -moz-transition: all .5s;
-	    -ms-transition: all .5s;
-	     -o-transition: all .5s;
-	        transition: all .5s;
-}
-.switch__input:checked ~ .switch__circle {
-	left: 21px;
+  display: block;
+  top: 2px;
+  left: 2px;
+  position: absolute;
+  -webkit-box-shadow: 0 2px 6px #999;
+  box-shadow: 0 2px 6px #999;
+  width: 27px;
+  height: 27px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
 }
 
-.switch__input:checked ~ .switch__content:after {
-	background-color: #4BD964;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+.switch__input:checked~.switch__circle {
+  left: 21px;
 }
-  @media screen and (max-width: 425px) { 
-    .card-header{
-      display: table;
-      height: 67px;
-    }
-    
-    .card-header span{
-      display: table-cell;
-      height: 100%;
-    }
-    
-    /* 並び替えボタン */
-    .card .card-header span.head-1{
-      display: none;
-    }
-    /* edit or save button */
-    .card .card-header span.head-2{
-      display: none;
-    }
-    
-    .card .card-header span.head-3{
-      width:100%;
-      height: auto;
-      display: block;
-    }
-    
-    .card .card-header span.head-4{
-      width:100%;
-      height: auto;
-      display: block;
-    }
-    
-    .card .card-header span.head-5{
-      display: none;
-    }
-    
-    .editable .card-header span.head-3{
-      width:100%;
-      height: auto;
-      display: block;
-    }
-    
-    .editable .card-header span.head-4{
-      width:100%;
-      height: auto;
-      display: block;
-    }
-    
-    .editable .card-header span.head-5{
-      width:100%;
-      height: auto;
-      display: block;
-    }
+
+.switch__input:checked~.switch__content:after {
+  background-color: #4BD964;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+ul.head-bar li {
+  display: inline;
+}
+
+ul.head-bar li button {
+  display: inline;
+}
+
+@media screen and (max-width: 425px) {
+  .card-header {
+    display: table;
+    height: 67px;
   }
-  
+  .card-header span {
+    display: table-cell;
+    height: 100%;
+  }
+  /* 並び替えボタン */
+  .card .card-header span.head-1 {
+    display: none;
+  }
+  /* edit or save button */
+  .card .card-header span.head-2 {
+    width :10%;
+  }
+  .card .card-header span.head-2 a {
+    display: none;
+  }
+  .card .card-header span.head-2 i {
+    font-size: xx-large;
+  }
+  .card .card-header span.head-3 {
+    width: 90%;
+    height: auto;
+    display: block;
+  }
+  .card .card-header span.head-4 {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .card .card-header span.head-5 {
+    display: none;
+  }
+  .editable .card-header span.head-3 {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .editable .card-header span.head-4 {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .editable .card-header span.head-5 {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}

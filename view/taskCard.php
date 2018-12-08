@@ -4,20 +4,19 @@ function viewTaskCard($taskCard)
 return $cardHtml = <<<HTML
 <li>
     <div id="taskCard{$taskCard->getId()}" data-priority="{$taskCard->getPriority()}" class="accordion card bg-light mb-3">
-
     <div class="card-header">
         <span class="sortArea head-1">
           <i class="fas fa-bars"></i>
         </span>
         <span class="head-2">
           <button class="btn btn-link modeChangeBtn" type="button" data-taskid="{$taskCard->getId()}" data-role="edit" aria-expanded="true" aria-controls="collapseOne">
-            <i class="fas fa-edit"></i>
-            <a>edit</a>
+            <i class="fas fa-caret-down"></i>
+            <a>open</a>
           </button>
         </span>
         <span class="head-3">
           <h5 id="nameView{$taskCard->getId()}" class="card-title font-weight-bold">{$taskCard->getName()}</h5>
-          <input id="name{$taskCard->getId()}" name="name{$taskCard->getId()}" type="text" class="form-control" placeholder="Title" aria-label="Title"  value="{$taskCard->getName()}" aria-describedby="basic-addon1" style="display: none;">
+          <input id="name{$taskCard->getId()}" name="name{$taskCard->getId()}" type="text" maxlength="50" class="form-control" placeholder="Title" aria-label="Title"  value="{$taskCard->getName()}" aria-describedby="basic-addon1" style="display: none;">
         </span>
         <span class="head-4">
           <i class="far fa-clock text-muted"></i>
@@ -38,8 +37,9 @@ return $cardHtml = <<<HTML
           <textarea id="note{$taskCard->getId()}" name="note{$taskCard->getId()}" class="form-control" rows="3" style="display: none;">{$taskCard->getNote()}</textarea>
         </div>
         <div class="card-footer">
-          <a href="#" class="badge badge-info">プライベート</a>
-          <a href="#" class="badge badge-pill badge-success">買い物リスト</a>
+            <button class="editBtn" data-taskid="{$taskCard->getId()}" data-role="edit"><i class="fas fa-edit"></i></button>
+            <button class="deleteBtn" data-taskid="{$taskCard->getId()}"><i class="fas fa-eraser"></i></button>
+            <button class="doneBtn" data-taskid="{$taskCard->getId()}"><i class="fas fa-check"></i></button>
         </div>
       </div>
     </div>

@@ -34,13 +34,6 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <button id="newBtn" class="btn btn-primary nav-link mr-sm-2"><i class="fas fa-plus-circle"></i>&nbsp;新規作成</button>
-        </li>
-        <li class="nav-item">
-          <button id="trashBtn" class="btn btn-secondary nav-link" data-toggle="modal" data-target="#trashModal"><i
-              class="fas fa-trash"></i>&nbsp;ゴミ箱</button>
-        </li>
         <!--
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -82,8 +75,9 @@
           <table class="table">
             <thead>
               <tr>
-                <th>タスク名</th>
-                <th></th>
+                  <th></th>
+                  <th>タスク名</th>
+                  <th></th>
               </tr>
             </thead>
             <tbody>
@@ -122,13 +116,13 @@ $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
       </label>
     </div>
     <h1 class="mb-3">Your List</h1>
-<div id="progressArea">
-<?php
+    <div id="progressArea">
+      <?php
 include_once 'view/progressBar.php';
     $count= $daoQuery->countTodayByState($userId);
     print viewBar($count['1'],$count['0']);
 ?>
-</div>
+    </div>
     <div id="newTaskCard" data-priority="0" class="card bg-light mb-3 editable" style="display:none">
       <div class="card-header">
         <span class="sortArea head-1">
@@ -142,7 +136,8 @@ include_once 'view/progressBar.php';
           </button>
         </span>
         <span class="head-3">
-          <input id="newName" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+          <input id="newName" type="text" class="form-control" maxlength="50" placeholder="Title" aria-label="Title"
+            aria-describedby="basic-addon1">
         </span>
         <span class="head-4">
           <input id="newDate" class="datepicker form-control" name="date" type="text" placeholder="Date">
@@ -179,11 +174,7 @@ for ($i = 0; $i < count($undoneTasks); $i++) {
 
     </ul>
 
-    <div id="doneBox">
-      <button data-toggle="modal" data-target="#doneModal">
-        <i class="fas fa-clipboard-check"></i>
-      </button>
-    </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="doneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -217,7 +208,30 @@ for ($i = 0; $i < count($undoneTasks); $i++) {
       </div>
     </div>
 
-  </main><!-- /.container -->
+  </main>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-bottom">
+    <ul class="head-bar">
+      <li>
+        <button id="newBtn" class="btn btn-primary nav-link mr-sm-2">
+          <i class="fas fa-plus-circle"></i>&nbsp;新規作成
+        </button>
+      </li>
+      <li>
+        <button id="doneBox" class="btn btn-secondary nav-link mr-sm-2" data-toggle="modal" data-target="#doneModal">
+          <i class="fas fa-clipboard-check"></i>&nbsp;完了済
+        </button>
+      </li>
+      <li>
+        <button id="trashBtn" class="btn btn-secondary nav-link" data-toggle="modal" data-target="#trashModal">
+          <i class="fas fa-trash"></i>&nbsp;ゴミ箱
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- /.container -->
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->

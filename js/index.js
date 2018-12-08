@@ -16,10 +16,9 @@ $('.timepicker').pickatime({
 function forEditCard(taskCardId) {
     var taskCard = $('#' + taskCardId);
     taskCard.addClass('editable');
-    taskCard.children().find('.head-2 button').attr('data-role', 'save');
-    taskCard.children().find('.head-2 button i').removeClass('fa-edit');
-    taskCard.children().find('.head-2 button i').addClass('fa-save');
-    taskCard.children().find('.head-2 button a').text('save');
+    taskCard.children().find('.editBtn').attr('data-role', 'save');
+    taskCard.children().find('.editBtn i').removeClass('fa-edit');
+    taskCard.children().find('.editBtn i').addClass('fa-save');
     taskCard.children().find('.head-3 h5').hide();
     taskCard.children().find('.head-4 i').hide();
     taskCard.children().find('.head-4 a').hide();
@@ -34,10 +33,9 @@ function forEditCard(taskCardId) {
 function forViewCrad(taskCardId) {
     var taskCard = $('#' + taskCardId);
     taskCard.removeClass('editable');
-    taskCard.children().find('.head-2 button').attr('data-role', 'edit');
-    taskCard.children().find('.head-2 button i').removeClass('fa-save');
-    taskCard.children().find('.head-2 button i').addClass('fa-edit');
-    taskCard.children().find('.head-2 button a').text('edit');
+    taskCard.children().find('.editBtn').attr('data-role', 'edit');
+    taskCard.children().find('.editBtn i').removeClass('fa-save');
+    taskCard.children().find('.editBtn i').addClass('fa-edit');
     taskCard.children().find('.head-3 h5').show();
     taskCard.children().find('.head-4 i').show();
     taskCard.children().find('.head-4 a').show();
@@ -52,18 +50,31 @@ function forViewCrad(taskCardId) {
 // ボタン押下時に発火
 $('#sortable').delegate('.modeChangeBtn', 'click', function (e) {
     e.preventDefault();
-    var id = $(this).parents('.card').attr('id');
+    var id =$(this).attr('data-taskid');
     if ($(this).attr('data-role') == 'save') {
-        updateTask($(this).attr('data-taskid'));
-        forViewCrad(id);
-        $('#collapseOne' + $(this).attr('data-taskid')).collapse('hide');
+        $('#collapseOne' + id).collapse('hide');
+        $('#taskCard'+id).children().find('.head-2 button').attr('data-role', 'edit');
+        $('#taskCard'+id).children().find('.head-2 button i').attr('style', 'transform:rotateX(0deg)');
     } else {
-        forEditCard(id);
-        $('#collapseOne' + $(this).attr('data-taskid')).collapse('show');
+        $('#collapseOne' + id).collapse('show');
+        $('#taskCard'+id).children().find('.head-2 button').attr('data-role', 'save');
+        $('#taskCard'+id).children().find('.head-2 button i').attr('style', 'transform:rotateX(180deg)');
     }
-    
+
 });
 //ダブルクリック対策必要
+
+$('#sortable').delegate('.editBtn', 'click', function (e) {
+    e.preventDefault();
+    var id = $(this).attr('data-taskid');
+    if ($(this).attr('data-role') == 'save') {
+        updateTask(id);
+        forViewCrad('taskCard'+id);
+    } else {
+        forEditCard('taskCard'+id);
+    }
+});
+
 
 function updateTask(id) {
     $.ajax({
@@ -101,18 +112,9 @@ function doneTask(id) {
         }
     })
         .done((data) => {
-            $('#taskCard' + id).css('position', 'fixed');
-            $('#taskCard' + id).css('bottom', '3%');
-            $(this).hide();
-            setTimeout(() => {
-                $('#taskCard' + id).addClass('deletedCard');
-                $('#taskCard' + id).fadeOut(1000);
-            }, 500);
+            $('#taskCard' + id).addClass('deletedCard');
+            $('#taskCard' + id).fadeOut(1000);
             updateProgress();
-            $('#doneBox').addClass('purupuru');
-            setTimeout(() => {
-                $('#doneBox').removeClass('purupuru');
-            }, 1800);
         })
         .fail((data) => {
             console.log(data);
@@ -141,8 +143,29 @@ function unDoneTask(id) {
         });
 };
 
+function unDeleteTask(id) {
+    $.ajax({
+        type: "POST",
+        url: "ajaxTaskCrud.php?q=delete",
+        data: {
+            id: id,
+            deleteFlag: 0
+        }
+    })
+        .done((data) => {
+            $('#tr' + id).hide();
+        })
+        .fail((data) => {
+            console.log(data);
+        });
+};
+
 $('#doneModal').delegate('.unDoneBtn', 'click', function () {
     unDoneTask($(this).attr('data-taskid'));
+});
+
+$('#trashModal').delegate('.unDoneBtn', 'click', function () {
+    unDeleteTask($(this).attr('data-taskid'));
 });
 
 $('#doneBox').on('touchstart click', function (e) {
@@ -165,12 +188,12 @@ $('#doneBox').on('touchstart click', function (e) {
                     '<td scope="row">' +
                     '<button class="btn btn-link unDoneBtn" type="button" data-taskid="' +
                     element.id + '">' +
-                    '<i class="fas fa-check"></i>back' +
+                    '<i class="fas fa-undo-alt"></i>back' +
                     '</button></td><td><h5>' +
                     element.name +
                     '</h5></td><td><button class="btn btn-link deleteBtn" type="button" data-taskid="' +
                     element.id + '">' +
-                    '<i class="fas fa-check"></i>delete</button></td></tr>';
+                    '<i class="fas fa-eraser"></i>delete</button></td></tr>';
                 $('#doneModal').children().find('tbody').append(trHTML);
             }
             $('#doneModal').modal('show');
@@ -220,16 +243,23 @@ $('.cancelBtn').click(function (e) {
 
 });
 
-function deleteTask(id) {
+function deleteTask(id, type) {
     $.ajax({
         type: "POST",
         url: "ajaxTaskCrud.php?q=delete",
         data: {
-            id: id
+            id: id,
+            deleteFlag: 1
         }
     })
         .done((data) => {
-            $('#tr' + id).hide();
+            if (type === 'modal') {
+                $('#tr' + id).hide();
+            } else if (type === 'card') {
+                $('#taskCard' + id).addClass('deletedCard');
+                $('#taskCard' + id).fadeOut(1000);
+                updateProgress();
+            }
         })
         .fail((data) => {
             console.log(data);
@@ -237,7 +267,11 @@ function deleteTask(id) {
 };
 
 $('#doneModal').delegate('.deleteBtn', 'click', function () {
-    deleteTask($(this).attr('data-taskid'));
+    deleteTask($(this).attr('data-taskid'), 'modal');
+});
+
+$('#sortable').delegate('.deleteBtn', 'click', function () {
+    deleteTask($(this).attr('data-taskid'), 'card');
 });
 
 $('#trashBtn').on('touchstart click', function (e) {
@@ -256,13 +290,15 @@ $('#trashBtn').on('touchstart click', function (e) {
             for (let index = 0; index < data.length; index++) {
                 const element = data[index];
                 var trHTML = '<tr id="tr' + element.id + '">' +
-                    '<td scope="row">' +
-                    '<button class="btn btn-link finalDeleteBtn" type="button" data-taskid="' +
+                    '<td scope="row"><button class="btn btn-link unDoneBtn" type="button" data-taskid="' +
                     element.id + '">' +
-                    '<i class="fas fa-check"></i>delete' +
+                    '<i class="fas fa-undo-alt"></i>back' +
                     '</button></td><td><h5>' +
                     element.name +
-                    '</h5></td></tr>';
+                    '</h5></td><td><button class="btn btn-link finalDeleteBtn" type="button" data-taskid="' +
+                    element.id + '">' +
+                    '<i class="fas fa-ban"></i>delete' +
+                    '</button></td></tr>';
                 $('#trashModal').children().find('tbody').append(trHTML);
             }
             $('#trashModal').modal('show');
@@ -334,37 +370,3 @@ function updateProgress() {
         });
 };
 
-$('.card').on('touchstart', function () {
-    event.preventDefault();
-    $(this).data('startX', event.touches[0].pageX)
-        .data('startY', event.touches[0].pageY).data('moveX', 0).data('moveY', 0);
-}).on('touchmove', function () {
-    $(this)
-        .data('moveX', event.touches[0].pageX - $(this).data('startX'))
-        .data('moveY', event.touches[0].pageY - $(this).data('startY'));
-}).on('touchend', function () {
-    if ($(this).data('moveX') > 10) {
-        alert('右スワイプした');
-    } else if ($(this).data('moveX') < -10) {
-        alert('左スワイプした');
-    } else if ($(this).data('moveY') > -10 && $(this).data('moveY') < 10) {
-
-    } else {
-
-    }
-})
-
-
-$('#sortable').delegate('.card-header', 'touchstart', function (e) {
-    e.preventDefault();
-    var id = $(this).parents('.card').attr('id');
-    console.debug($(this).children().find('.modeChangeBtn').attr('data-role'));
-    if ($(this).children().find('.modeChangeBtn').attr('data-role') == 'save') {
-        updateTask($(this).children().find('.modeChangeBtn').attr('data-taskid'));
-        forViewCrad(id);
-        $('#collapseOne' + $(this).children().find('.modeChangeBtn').attr('data-taskid')).collapse('hide');
-    } else {
-        forEditCard(id);
-        $('#collapseOne' + $(this).children().find('.modeChangeBtn').attr('data-taskid')).collapse('show');
-    }
-});

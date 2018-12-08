@@ -47,8 +47,8 @@ switch ($_GET['q']) {
         }
         break;
     case 'delete':
-        if (isset($_POST['id'])) {
-            $result = $daoUpdate->updateTaskDelete(1, $_POST['id']);
+        if (isset($_POST['id'], $_POST['deleteFlag'])) {
+            $result = $daoUpdate->updateTaskDelete($_POST['deleteFlag'], $_POST['id']);
             echo $result;
         } else {
             echo '失敗';
