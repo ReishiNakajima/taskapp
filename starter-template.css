@@ -241,6 +241,12 @@ ul.head-bar li button {
   display: inline;
 }
 
+.head-bar{
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (max-width: 425px) {
   .card-header {
     display: table;
@@ -291,5 +297,8 @@ ul.head-bar li button {
     width: 100%;
     height: auto;
     display: block;
+  }
+  .head-bar button>a{
+    display: none;
   }
 }

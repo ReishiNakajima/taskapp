@@ -214,17 +214,17 @@ for ($i = 0; $i < count($undoneTasks); $i++) {
     <ul class="head-bar">
       <li>
         <button id="newBtn" class="btn btn-primary nav-link mr-sm-2">
-          <i class="fas fa-plus-circle"></i>&nbsp;新規作成
+          <i class="fas fa-plus-circle"></i><a>&nbsp;新規作成</a>
         </button>
       </li>
       <li>
         <button id="doneBox" class="btn btn-secondary nav-link mr-sm-2" data-toggle="modal" data-target="#doneModal">
-          <i class="fas fa-clipboard-check"></i>&nbsp;完了済
+          <i class="fas fa-clipboard-check"></i><a>&nbsp;完了済</a>
         </button>
       </li>
       <li>
         <button id="trashBtn" class="btn btn-secondary nav-link" data-toggle="modal" data-target="#trashModal">
-          <i class="fas fa-trash"></i>&nbsp;ゴミ箱
+          <i class="fas fa-trash"></i><a>&nbsp;ゴミ箱</a>
         </button>
       </li>
     </ul>
