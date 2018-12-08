@@ -50,7 +50,7 @@ function forViewCrad(taskCardId) {
 }
 
 // ボタン押下時に発火
-$('#sortable').delegate('.modeChangeBtn', 'touchstart click', function (e) {
+$('#sortable').delegate('.modeChangeBtn', 'click', function (e) {
     e.preventDefault();
     var id = $(this).parents('.card').attr('id');
     if ($(this).attr('data-role') == 'save') {
@@ -61,7 +61,7 @@ $('#sortable').delegate('.modeChangeBtn', 'touchstart click', function (e) {
         forEditCard(id);
         $('#collapseOne' + $(this).attr('data-taskid')).collapse('show');
     }
-    $('collapseOne' + id).collapse()
+    
 });
 //ダブルクリック対策必要
 
@@ -333,3 +333,38 @@ function updateProgress() {
             console.log(data);
         });
 };
+
+$('.card').on('touchstart', function () {
+    event.preventDefault();
+    $(this).data('startX', event.touches[0].pageX)
+        .data('startY', event.touches[0].pageY).data('moveX', 0).data('moveY', 0);
+}).on('touchmove', function () {
+    $(this)
+        .data('moveX', event.touches[0].pageX - $(this).data('startX'))
+        .data('moveY', event.touches[0].pageY - $(this).data('startY'));
+}).on('touchend', function () {
+    if ($(this).data('moveX') > 10) {
+        alert('右スワイプした');
+    } else if ($(this).data('moveX') < -10) {
+        alert('左スワイプした');
+    } else if ($(this).data('moveY') > -10 && $(this).data('moveY') < 10) {
+
+    } else {
+
+    }
+})
+
+
+$('#sortable').delegate('.card-header', 'touchstart', function (e) {
+    e.preventDefault();
+    var id = $(this).parents('.card').attr('id');
+    console.debug($(this).children().find('.modeChangeBtn').attr('data-role'));
+    if ($(this).children().find('.modeChangeBtn').attr('data-role') == 'save') {
+        updateTask($(this).children().find('.modeChangeBtn').attr('data-taskid'));
+        forViewCrad(id);
+        $('#collapseOne' + $(this).children().find('.modeChangeBtn').attr('data-taskid')).collapse('hide');
+    } else {
+        forEditCard(id);
+        $('#collapseOne' + $(this).children().find('.modeChangeBtn').attr('data-taskid')).collapse('show');
+    }
+});

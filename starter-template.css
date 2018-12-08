@@ -234,32 +234,41 @@ overflow: hidden;
     }
     /* edit or save button */
     .card .card-header span.head-2{
-      width:5%;
-      padding-top: 6px;
-    }
-    
-    .card .card-header span.head-3{
-      width:90%; 
-    }
-    
-    .card .card-header span.head-4{
       display: none;
     }
     
+    .card .card-header span.head-3{
+      width:100%;
+      height: auto;
+      display: block;
+    }
+    
+    .card .card-header span.head-4{
+      width:100%;
+      height: auto;
+      display: block;
+    }
+    
     .card .card-header span.head-5{
-      width:5%; 
+      display: none;
     }
     
     .editable .card-header span.head-3{
-      width:40%; 
+      width:100%;
+      height: auto;
+      display: block;
     }
     
     .editable .card-header span.head-4{
-      width:30%; 
+      width:100%;
+      height: auto;
+      display: block;
     }
     
     .editable .card-header span.head-5{
-      width:15%; 
+      width:100%;
+      height: auto;
+      display: block;
     }
   }
   
