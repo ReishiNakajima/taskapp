@@ -28,9 +28,8 @@ function viewBar($done, $undone)
                 100% {width: {$percentage}%}
               }
           </style>
-
-
 HTML;
+
     if ($undone > 0) {
         $addHtml = <<<HTML
     <div class="alert alert-info alert-dismissible fade show" role="alert">

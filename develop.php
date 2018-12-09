@@ -34,6 +34,15 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#all">全て</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#today">今日</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#this_week">今週</a>
+        </li>
         <!--
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>

@@ -50,17 +50,17 @@ function forViewCrad(taskCardId) {
 // ボタン押下時に発火
 $('#sortable').delegate('.modeChangeBtn', 'click', function (e) {
     e.preventDefault();
-    var id =$(this).attr('data-taskid');
+    var id = $(this).attr('data-taskid');
     if ($(this).attr('data-role') == 'save') {
         $('#collapseOne' + id).collapse('hide');
-        $('#taskCard'+id).children().find('.head-2 button').attr('data-role', 'edit');
-        $('#taskCard'+id).children().find('.head-2 button i').attr('style', 'transform:rotateX(0deg)');
-        $('#taskCard'+id).children().find('.head-2 button a').text('open');
+        $('#taskCard' + id).children().find('.head-2 button').attr('data-role', 'edit');
+        $('#taskCard' + id).children().find('.head-2 button i').attr('style', 'transform:rotateX(0deg)');
+        $('#taskCard' + id).children().find('.head-2 button a').text('open');
     } else {
         $('#collapseOne' + id).collapse('show');
-        $('#taskCard'+id).children().find('.head-2 button').attr('data-role', 'save');
-        $('#taskCard'+id).children().find('.head-2 button i').attr('style', 'transform:rotateX(180deg)');
-        $('#taskCard'+id).children().find('.head-2 button a').text('close');
+        $('#taskCard' + id).children().find('.head-2 button').attr('data-role', 'save');
+        $('#taskCard' + id).children().find('.head-2 button i').attr('style', 'transform:rotateX(180deg)');
+        $('#taskCard' + id).children().find('.head-2 button a').text('close');
     }
 
 });
@@ -71,9 +71,9 @@ $('#sortable').delegate('.editBtn', 'click', function (e) {
     var id = $(this).attr('data-taskid');
     if ($(this).attr('data-role') == 'save') {
         updateTask(id);
-        forViewCrad('taskCard'+id);
+        forViewCrad('taskCard' + id);
     } else {
-        forEditCard('taskCard'+id);
+        forEditCard('taskCard' + id);
     }
 });
 
@@ -90,12 +90,12 @@ function updateTask(id) {
             note: $('#note' + id).val()
         }
     })
-        .done((data) => {
+        .done(function (data) {
             $('#nameView' + id).text($('#name' + id).val());
             $('#deadlineView' + id).text($('#date' + id).val() + ' ' + $('#time' + id).val());
             $('#noteView' + id).text($('#note' + id).val());
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 }
@@ -113,12 +113,12 @@ function doneTask(id) {
             doneFlag: 1
         }
     })
-        .done((data) => {
+        .done(function (data) {
             $('#taskCard' + id).addClass('deletedCard');
             $('#taskCard' + id).fadeOut(1000);
             updateProgress();
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 }
@@ -137,10 +137,10 @@ function unDoneTask(id) {
             doneFlag: 0
         }
     })
-        .done((data) => {
+        .done(function (data) {
             $('#tr' + id).hide();
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 };
@@ -154,10 +154,10 @@ function unDeleteTask(id) {
             deleteFlag: 0
         }
     })
-        .done((data) => {
+        .done(function (data) {
             $('#tr' + id).hide();
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 };
@@ -181,7 +181,7 @@ $('#doneBox').on('touchstart click', function (e) {
             userId: 2
         }
     })
-        .done((data) => {
+        .done(function (data) {
             console.log(data);
             $('#doneModal').children().find('tbody').empty();
             for (let index = 0; index < data.length; index++) {
@@ -200,7 +200,7 @@ $('#doneBox').on('touchstart click', function (e) {
             }
             $('#doneModal').modal('show');
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 
@@ -219,7 +219,7 @@ $('.createBtn').on('touchstart click', function (e) {
             userId: 2
         }
     })
-        .done((data) => {
+        .done(function (data) {
             updateTaskCard();
             updateProgress();
             $('#newName').val('');
@@ -231,7 +231,7 @@ $('.createBtn').on('touchstart click', function (e) {
             console.log(data);
 
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 
@@ -256,7 +256,7 @@ function deleteTask(id, type) {
             deleteFlag: 1
         }
     })
-        .done((data) => {
+        .done(function (data) {
             if (type === 'modal') {
                 $('#tr' + id).hide();
             } else if (type === 'card') {
@@ -265,7 +265,7 @@ function deleteTask(id, type) {
                 updateProgress();
             }
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 };
@@ -288,7 +288,7 @@ $('#trashBtn').on('touchstart click', function (e) {
             userId: 2
         }
     })
-        .done((data) => {
+        .done(function (data) {
             console.log(data);
             $('#trashModal').children().find('tbody').empty();
             for (let index = 0; index < data.length; index++) {
@@ -307,7 +307,7 @@ $('#trashBtn').on('touchstart click', function (e) {
             }
             $('#trashModal').modal('show');
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 
@@ -321,10 +321,10 @@ function finalDeleteTask(id) {
             id: id
         }
     })
-        .done((data) => {
+        .done(function (data) {
             $('#tr' + id).hide();
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 };
@@ -338,14 +338,52 @@ function updateTaskCard() {
         type: "POST",
         url: "ajaxGetHtml.php?q=undoneTaskCardList"
     })
-        .done((data) => {
+        .done(function (data) {
             $('#sortable').empty();
             $('#sortable').append(data);
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 };
+
+function filterTaskCardBydeadline(date) {
+    $.ajax({
+        type: "POST",
+        url: "ajaxGetHtml.php?q=undoneTaskCardList",
+        data: {
+            byDeadline: date
+        }
+    })
+        .done(function (data) {
+            $('#sortable').empty();
+            $('#sortable').append(data);
+        })
+        .fail(function (data) {
+            console.log(data);
+        });
+};
+
+$('.nav-item').click(function (e) {
+    e.preventDefault();
+    $('.nav-item').removeClass('active');
+    $(this).addClass('active');
+    switch ($(this).children('.nav-link').attr('href')) {
+        case '#all':
+            updateTaskCard();
+            break;
+        case '#today':
+            filterTaskCardBydeadline('today');
+            break;
+        case '#this_week':
+            filterTaskCardBydeadline('this_week');
+            break;
+        default:
+            break;
+    }
+    window.location.href = $(this).children('.nav-link').attr('href');
+
+});
 
 $('div').on('hide.bs.modal', function (e) {
     updateTaskCard();
@@ -371,11 +409,11 @@ function updateProgress() {
         type: "POST",
         url: "ajaxGetHtml.php?q=progressBar"
     })
-        .done((data) => {
+        .done(function (data) {
             $('#progressArea').empty();
             $('#progressArea').append(data);
         })
-        .fail((data) => {
+        .fail(function (data) {
             console.log(data);
         });
 };

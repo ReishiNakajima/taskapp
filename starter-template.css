@@ -27,6 +27,7 @@ main {
 .card-header {
   display: table;
   height: 67px;
+  width: 100%;
 }
 
 .card-header span {

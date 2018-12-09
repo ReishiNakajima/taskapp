@@ -12,7 +12,17 @@ $daoQuery = new daoQuery();
 
 switch ($_GET['q']) {
     case 'undoneTaskCardList':
-        $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
+        if (isset($_POST['byDeadline'])) {
+            $deadline;
+            if ($_POST['byDeadline'] == 'today') {
+                $deadline = date("Y/m/d", strtotime("+1 day"));
+            } else if ($_POST['byDeadline'] == 'this_week') {
+                $deadline = date("Y/m/d", strtotime("+8 day"));
+            }
+            $undoneTasks = $daoQuery->queryTaskListBydeadline($userId, $deadline);
+        } else {
+            $undoneTasks = $daoQuery->queryTaskList($userId, 0, 0);
+        }
         for ($i = 0; $i < count($undoneTasks); $i++) {
             echo viewTaskCard($undoneTasks[$i]);
         }
