@@ -75,9 +75,9 @@
           <table class="table">
             <thead>
               <tr>
-                  <th></th>
-                  <th>タスク名</th>
-                  <th></th>
+                <th></th>
+                <th>タスク名</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -125,15 +125,9 @@ include_once 'view/progressBar.php';
     </div>
     <div id="newTaskCard" data-priority="0" class="card bg-light mb-3 editable" style="display:none">
       <div class="card-header">
-        <span class="sortArea head-1">
-          <i class="fas fa-bars"></i>
+        <span class="sortArea head-1" style="display:none">
         </span>
-        <span class="head-2">
-          <button class="btn btn-link createBtn" type="button" data-editable="false" data-toggle="collapse" data-target="#collapseOne0"
-            aria-expanded="true" aria-controls="collapseOne">
-            <i class="fas fa-save"></i>
-            <a>save</a>
-          </button>
+        <span class="head-2" style="display:none">
         </span>
         <span class="head-3">
           <input id="newName" type="text" class="form-control" maxlength="50" placeholder="Title" aria-label="Title"
@@ -147,20 +141,14 @@ include_once 'view/progressBar.php';
         </span>
       </div>
 
-
       <div class="card-body">
         <textarea id="newNote" class="form-control" rows="3"></textarea>
       </div>
-      <div class="card-footer">
-        <button class="btn btn-link cancelBtn" type="button" data-editable="false" data-toggle="collapse" data-target="#collapseOne0"
-          aria-expanded="true" aria-controls="collapseOne">
-          <i class="fas fa-ban"></i>
-          <a>cancel</a>
-        </button>
-        <a href="#" class="badge badge-info">プライベート</a>
-        <a href="#" class="badge badge-pill badge-success">買い物リスト</a>
-      </div>
 
+      <div class="card-footer">
+        <button class="createBtn" data-taskid="{$taskCard->getId()}" data-role="edit"><i class="fas fa-save"></i></button>
+        <button class="cancelBtn" data-taskid="{$taskCard->getId()}"><i class="fas fa-eraser"></i></button>
+      </div>
     </div>
 
     <ul id="sortable">
@@ -213,12 +201,12 @@ for ($i = 0; $i < count($undoneTasks); $i++) {
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-bottom">
     <ul class="head-bar">
       <li>
-        <button id="newBtn" class="btn btn-primary nav-link mr-sm-2">
+        <button id="newBtn" class="btn btn-primary nav-link mr-3">
           <i class="fas fa-plus-circle"></i><a>&nbsp;新規作成</a>
         </button>
       </li>
       <li>
-        <button id="doneBox" class="btn btn-secondary nav-link mr-sm-2" data-toggle="modal" data-target="#doneModal">
+        <button id="doneBox" class="btn btn-secondary nav-link mr-3" data-toggle="modal" data-target="#doneModal">
           <i class="fas fa-clipboard-check"></i><a>&nbsp;完了済</a>
         </button>
       </li>

@@ -55,10 +55,12 @@ $('#sortable').delegate('.modeChangeBtn', 'click', function (e) {
         $('#collapseOne' + id).collapse('hide');
         $('#taskCard'+id).children().find('.head-2 button').attr('data-role', 'edit');
         $('#taskCard'+id).children().find('.head-2 button i').attr('style', 'transform:rotateX(0deg)');
+        $('#taskCard'+id).children().find('.head-2 button a').text('open');
     } else {
         $('#collapseOne' + id).collapse('show');
         $('#taskCard'+id).children().find('.head-2 button').attr('data-role', 'save');
         $('#taskCard'+id).children().find('.head-2 button i').attr('style', 'transform:rotateX(180deg)');
+        $('#taskCard'+id).children().find('.head-2 button a').text('close');
     }
 
 });
@@ -225,6 +227,7 @@ $('.createBtn').on('touchstart click', function (e) {
             $('#newTime').val('');
             $('#newNote').val('');
             $('#newTaskCard').hide();
+            updateProgress();
             console.log(data);
 
         })
@@ -235,6 +238,7 @@ $('.createBtn').on('touchstart click', function (e) {
 });
 $('.cancelBtn').click(function (e) {
     e.preventDefault();
+    $('#newTaskCard').hide();
     $('#newName').val('');
     $('#newDate').val('');
     $('#newTime').val('');
@@ -351,8 +355,14 @@ $('div').on('hide.bs.modal', function (e) {
 $('#viewMode').on('touchstart click', function (e) {
     if ($(this).prop("checked")) {
         $('.card-body').parents('div.collapse').collapse('show');
+        $('.head-2 button').attr('data-role', 'save');
+        $('.head-2 button i').attr('style', 'transform:rotateX(180deg)');
+        $('.head-2 button a').text('close');
     } else {
         $('.collapse').collapse('hide');
+        $('.head-2 button').attr('data-role', 'edit');
+        $('.head-2 button i').attr('style', 'transform:rotateX(0deg)');
+        $('.head-2 button a').text('open');
     }
 });
 

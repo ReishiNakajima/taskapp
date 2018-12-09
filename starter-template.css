@@ -50,6 +50,7 @@ main {
 
 .card .card-header span.head-3 {
   width: 45%;
+  word-break: break-all;
 }
 
 .card .card-header span.head-4 {
@@ -247,6 +248,20 @@ ul.head-bar li button {
   margin-right: auto;
 }
 
+button{
+  cursor: pointer;
+}
+
+#newTaskCard{
+  border-width: 1.5px;
+  border-color: #0062cc;
+}
+
+.head-bar{
+  margin-bottom: 0;
+  height: auto;
+}
+
 @media screen and (max-width: 425px) {
   .card-header {
     display: table;
@@ -272,6 +287,7 @@ ul.head-bar li button {
   }
   .card .card-header span.head-3 {
     width: 90%;
+    word-break: break-all;
     height: auto;
     display: block;
   }
