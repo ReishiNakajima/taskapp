@@ -279,7 +279,9 @@ button{
   background-position: center center;
   background-size: 150px 150px;
 }
-
+.modal-body h5{
+  word-break: break-all;
+}
 @media screen and (max-width: 425px) {
   .card-header {
     display: table;
