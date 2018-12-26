@@ -218,8 +218,15 @@ $('.createBtn').on('touchstart click', function (e) {
             note: $('#newNote').val(),
             userId: 2
         }
+        ,
+        //リクエストが完了するまで実行される
+        beforeSend: function () {
+            $('.loading').removeClass('hide');
+        }
+
     })
-        .done(function (data) {
+        .done((data) => {
+            $('.loading').addClass('hide');
             updateTaskCard();
             updateProgress();
             $('#newName').val('');
