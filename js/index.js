@@ -232,7 +232,7 @@ $('.createBtn').on('touchstart click', function (e) {
         })
         .fail(function (data) {
             console.log(data);
-        })
+        });
 
 });
 $('.cancelBtn').click(function (e) {
