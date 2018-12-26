@@ -218,15 +218,8 @@ $('.createBtn').on('touchstart click', function (e) {
             note: $('#newNote').val(),
             userId: 2
         }
-        ,
-        //リクエストが完了するまで実行される
-        beforeSend: function () {
-            $('.loading').removeClass('hide');
-        }
-
     })
-        .done((data) => {
-            $('.loading').addClass('hide');
+        .done(function(data) {
             updateTaskCard();
             updateProgress();
             $('#newName').val('');
@@ -344,8 +337,15 @@ function updateTaskCard() {
     $.ajax({
         type: "POST",
         url: "ajaxGetHtml.php?q=undoneTaskCardList"
+        ,
+        //リクエストが完了するまで実行される
+        beforeSend: function () {
+            $('.loading').removeClass('hide');
+        }
+
     })
-        .done(function (data) {
+        .done(function(data) {
+            $('.loading').addClass('hide');
             $('#sortable').empty();
             $('#sortable').append(data);
         })
