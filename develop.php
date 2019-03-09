@@ -64,9 +64,10 @@
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control" type="search" placeholder="タスクを検索する..." aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+          <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit"><i class="fas fa-search"></i></button>
         </div>
       </form>
+      <button class="btn btn-outline-primary"><i class="fas fa-sign-in-alt"></i></button>
     </div>
   </nav>
   <!-- Modal -->
