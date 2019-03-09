@@ -228,7 +228,8 @@ for ($i = 0; $i < count($undoneTasks); $i++) {
     </ul>
   </nav>
 
-
+  <div class="loading hide"></div>
+  
   <!-- /.container -->
   <!-- Bootstrap core JavaScript
     ================================================== -->
